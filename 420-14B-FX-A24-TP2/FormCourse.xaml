@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_420_14B_FX_A24_TP2"
         mc:Ignorable="d"
-        Title="FormCourse" Height="400" Width="650">
+        Title="FormCourse" Height="400" Width="650" Loaded="Window_Loaded">
     
     <StackPanel Margin="10">
-        <TextBlock HorizontalAlignment="Center" FontWeight="Black" FontSize="20" Margin="10">Ajouter une course</TextBlock>
+        <TextBlock x:Name="txtTitre" HorizontalAlignment="Center" FontWeight="Black" FontSize="20" Margin="10">Ajouter une course</TextBlock>
         <GroupBox>
             <TabControl>
                 <TabItem Header="Information de la course">
@@ -28,17 +28,31 @@
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <Label Width="70">Province</Label>
                             <ComboBox x:Name="cBoxProvince" Width="170">
-                                <ComboBoxItem Content="Québec"></ComboBoxItem>
+                                <ComboBoxItem Content="Alberta"></ComboBoxItem>
+                                <ComboBoxItem Content="ColombieBritannique"></ComboBoxItem>
+                                <ComboBoxItem Content="IlePrinceEdouard"></ComboBoxItem>
+                                <ComboBoxItem Content="Manitoba"></ComboBoxItem>
+                                <ComboBoxItem Content="NouveauBrunswick"></ComboBoxItem>
+                                <ComboBoxItem Content="NouvelleEcosse"></ComboBoxItem>
+                                <ComboBoxItem Content="Nunavut"></ComboBoxItem>
+                                <ComboBoxItem Content="Ontario"></ComboBoxItem>
+                                <ComboBoxItem Content="Quebec"></ComboBoxItem>
+                                <ComboBoxItem Content="Saskatchewan"></ComboBoxItem>
+                                <ComboBoxItem Content="TerreNeuveLabrador"></ComboBoxItem>
+                                <ComboBoxItem Content="TerritoiresNordOuest"></ComboBoxItem>
+                                <ComboBoxItem Content="Yukon"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <Label Width="70">Date</Label>
-                            <DatePicker Width="130"/>
+                            <DatePicker x:Name="dtpDate" Width="130"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <Label Width="70">Type</Label>
                             <ComboBox x:Name="cBoxType" Width="170">
                                 <ComboBoxItem Content="Sentier"></ComboBoxItem>
+                                <ComboBoxItem Content="Route"></ComboBoxItem>
+                                <ComboBoxItem Content="Piste"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5">
@@ -47,7 +61,7 @@
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Coureurs">
+                <TabItem Header="Coureurs" Height="20" VerticalAlignment="Top">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="10,10,20,0" FontWeight="Bold">DOSSARD</TextBlock>
@@ -56,7 +70,7 @@
                             <TextBlock Margin="0,10,50,0" FontWeight="bold">TEMPS</TextBlock>
                             <TextBlock Margin="0,10,0,0" FontWeight="Bold">RANG</TextBlock>
                         </StackPanel>
-                        <ListBox Margin="10, 0, 10 ,10" Height="150">
+                        <ListBox x:Name="lstCoureurs" Margin="10, 0, 10 ,10" Height="150">
 
                         </ListBox>
 
@@ -71,8 +85,8 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Margin="5" Width="100">Ajouter</Button>
-            <Button Margin="5" Width="100">Annuler</Button>
+            <Button x:Name="btnAjouter" Margin="5" Width="100">Ajouter</Button>
+            <Button x:Name="btnAnnuler" Margin="5" Width="100">Annuler</Button>
         </StackPanel>
     </StackPanel>
 </Window>

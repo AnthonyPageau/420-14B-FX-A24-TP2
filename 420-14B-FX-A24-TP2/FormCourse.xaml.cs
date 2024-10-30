@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _420_14B_FX_A24_TP2.classes;
+using _420_14B_FX_A24_TP2.enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,59 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class FormCourse : Window
     {
-        public FormCourse()
+        private Course _course;
+
+        public Course Course
         {
+            get { return _course; }
+            set { _course = value; }
+        }
+
+        private EtatFormulaire _etat;
+
+        public EtatFormulaire Etat
+        {
+            get { return _etat; }
+            set { _etat = value; }
+        }
+
+
+        public FormCourse(EtatFormulaire etat = EtatFormulaire.Ajouter, Course course = null)
+        {
+            Etat = etat;
+            Course = course;
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtTitre.Text = $"{Etat} d'une course";
+            btnAjouter.Content = Etat;
+
+            if (Course != null)
+            {
+                txtNom.Text = Course.Nom;
+                txtVille.Text = Course.Ville;
+                cBoxProvince.Text = Course.Province.ToString();
+                cBoxType.Text = Course.TypeCourse.ToString();
+                txtDistance.Text = Course.Distance.ToString();
+                txtNbrParticipant.Text = Course.Coureurs.Count.ToString();
+
+                foreach (Coureur coureur in Course.Coureurs)
+                {
+                    lstCoureurs.Items.Add(coureur);
+                }
+
+                if (Etat == EtatFormulaire.Supprimer)
+                {
+                    txtNom.IsEnabled = false;
+                    txtVille.IsEnabled = false;
+                    txtDistance.IsEnabled = false;
+                    txtNbrParticipant.IsEnabled = false;
+                    cBoxProvince.IsEnabled = false;
+                    cBoxType.IsEnabled = false;
+                }
+            }
         }
     }
 }
