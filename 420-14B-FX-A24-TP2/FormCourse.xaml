@@ -85,8 +85,8 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btnAjouter" Margin="5" Width="100">Ajouter</Button>
-            <Button x:Name="btnAnnuler" Margin="5" Width="100">Annuler</Button>
+            <Button x:Name="btnAjouter" Margin="5" Width="100" Click="btnAjouter_Click">Ajouter</Button>
+            <Button x:Name="btnAnnuler" Margin="5" Width="100" Click="btnAnnuler_Click">Annuler</Button>
         </StackPanel>
     </StackPanel>
 </Window>

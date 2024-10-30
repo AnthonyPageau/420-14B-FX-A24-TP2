@@ -54,6 +54,7 @@ namespace _420_14B_FX_A24_TP2
             {
                 txtNom.Text = Course.Nom;
                 txtVille.Text = Course.Ville;
+                dtpDate.Text = Course.Date.ToString();
                 cBoxProvince.Text = Course.Province.ToString();
                 cBoxType.Text = Course.TypeCourse.ToString();
                 txtDistance.Text = Course.Distance.ToString();
@@ -68,12 +69,56 @@ namespace _420_14B_FX_A24_TP2
                 {
                     txtNom.IsEnabled = false;
                     txtVille.IsEnabled = false;
+                    dtpDate.IsEnabled = false;
                     txtDistance.IsEnabled = false;
                     txtNbrParticipant.IsEnabled = false;
                     cBoxProvince.IsEnabled = false;
                     cBoxType.IsEnabled = false;
                 }
             }
+        }
+
+        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            switch(Etat)
+            {
+                case EtatFormulaire.Ajouter:
+                    Course = new Course(
+                        Guid.NewGuid(),
+                        txtNom.Text,
+                        DateOnly.FromDateTime(dtpDate.SelectedDate.Value),
+                        txtVille.Text,
+                        (Province)Enum.Parse(typeof(Province), cBoxProvince.Text),
+                        (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text),
+                        ushort.Parse(txtDistance.Text)
+                     );
+
+                    DialogResult = true;
+                    break;
+                case EtatFormulaire.Modifier:
+                    Course.Nom = txtNom.Text;
+                    Course.Date = DateOnly.FromDateTime(dtpDate.SelectedDate.Value);
+                    Course.Ville = txtVille.Text;
+                    Course.Province = (Province)Enum.Parse(typeof(Province), cBoxProvince.Text);
+                    Course.TypeCourse = (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text);
+                    Course.Distance = ushort.Parse(txtDistance.Text);
+
+                    DialogResult = true;
+                    break;
+                case EtatFormulaire.Supprimer:
+                    MessageBoxResult messageBoxResult = MessageBox.Show("Désirez-vous supprimer la course",
+                        "Suppression d'une course", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                    if (messageBoxResult == MessageBoxResult.Yes)
+                        DialogResult = true;
+                    else
+                        DialogResult = false;
+                    break;
+            }
+        }
+
+        private void btnAnnuler_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }
