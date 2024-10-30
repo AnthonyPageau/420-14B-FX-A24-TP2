@@ -70,5 +70,15 @@ namespace _420_14B_FX_A24_TP2.classes
 				}
 			}
         }
+
+		public void AJouterCourse(Course course)
+		{
+			Courses.Add(course);
+		}
+
+		public void SupprimerCourse(Course course)
+		{
+			Courses.Remove(course);
+		}
     }
 }

@@ -2,6 +2,7 @@
 using _420_14B_FX_A24_TP2.classes;
 using _420_14B_FX_A24_TP2.enums;
 using System.Windows;
+using System.Windows.Input;
 using Xceed.Wpf.Toolkit.Primitives;
 
 namespace _420_14B_FX_A24_TP2
@@ -39,7 +40,12 @@ namespace _420_14B_FX_A24_TP2
         private void btnNouveau_Click(object sender, RoutedEventArgs e)
         {
             FormCourse frmCourse = new FormCourse();
-            frmCourse.ShowDialog();
+            if(frmCourse.ShowDialog() == true)
+            {
+                _gestionCourse.Courses.Add(frmCourse.Course);
+                AfficherListeCourses();
+                MessageBox.Show("La course a bien été ajouté");
+            }
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
@@ -48,7 +54,12 @@ namespace _420_14B_FX_A24_TP2
             {
                 Course course = lstCourses.SelectedItem as Course;
                 FormCourse frmCourse = new FormCourse(EtatFormulaire.Modifier, course);
-                frmCourse.ShowDialog();
+                if (frmCourse.ShowDialog() == true)
+                {
+                    _gestionCourse.Courses.Add(course);
+                    AfficherListeCourses();
+                    MessageBox.Show("La course a bien été ajouté");
+                }
             }
         }
 
@@ -58,7 +69,12 @@ namespace _420_14B_FX_A24_TP2
             {
                 Course course = lstCourses.SelectedItem as Course;
                 FormCourse frmCourse = new FormCourse(EtatFormulaire.Supprimer, course);
-                frmCourse.ShowDialog();
+                if (frmCourse.ShowDialog() == true)
+                {
+                    _gestionCourse.Courses.Remove(course);
+                    AfficherListeCourses();
+                    MessageBox.Show("La course a bien été supprimé");
+                }
             }
         }
     }
