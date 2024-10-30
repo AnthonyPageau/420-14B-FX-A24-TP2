@@ -220,13 +220,25 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <remarks>Initialise une liste de coureurs vide</remarks>
         public Course(Guid id, string nom, DateOnly date, string ville, Province province, TypeCourse typeCourse, ushort distance )
         {
-
-           
+            Id = id;
+            Nom = nom;
+            Date = date;
+            Ville = ville;
+            Province = province;
+            TypeCourse = typeCourse;
+            Distance = distance;
+            Coureurs = new List<Coureur>();
         }
 
-      
 
+        public override string ToString()
+        {
+            string nom = Nom.PadRight(40);
+            string ville = Ville.PadRight(25);
+            string province = Province.ToString().PadRight(26);
+            string date = Date.ToString();
 
-
+            return $"{nom}{ville}{province}{date}";
+        }
     }
 }
