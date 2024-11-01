@@ -17,13 +17,13 @@
                             <Label Width="70">Nom</Label>
                             <TextBox x:Name="txtNom" Width="250"></TextBox>
                             <Label Width="145">Nbr Participant</Label>
-                            <TextBox x:Name="txtNbrParticipant" Width="70"></TextBox>
+                            <TextBox x:Name="txtNbrParticipant" Width="70" IsEnabled="False"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <Label Width="70">Ville</Label>
                             <TextBox x:Name="txtVille" Width="250"></TextBox>
                             <Label Width="145">Temps de course moyen</Label>
-                            <TextBox x:Name="txtTempsCourse" Width="70"></TextBox>
+                            <TextBox x:Name="txtTempsCourse" Width="70" IsEnabled="False"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <Label Width="70">Province</Label>

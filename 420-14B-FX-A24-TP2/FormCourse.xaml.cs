@@ -83,27 +83,32 @@ namespace _420_14B_FX_A24_TP2
             switch(Etat)
             {
                 case EtatFormulaire.Ajouter:
-                    Course = new Course(
-                        Guid.NewGuid(),
-                        txtNom.Text,
-                        DateOnly.FromDateTime(dtpDate.SelectedDate.Value),
-                        txtVille.Text,
-                        (Province)Enum.Parse(typeof(Province), cBoxProvince.Text),
-                        (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text),
-                        ushort.Parse(txtDistance.Text)
-                     );
-
-                    DialogResult = true;
+                    if (ValiderFormulaire())
+                    {
+                        Course = new Course(
+                            Guid.NewGuid(),
+                            txtNom.Text,
+                            DateOnly.FromDateTime(dtpDate.SelectedDate.Value),
+                            txtVille.Text,
+                            (Province)Enum.Parse(typeof(Province), cBoxProvince.Text),
+                            (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text),
+                            ushort.Parse(txtDistance.Text)
+                         );
+                        DialogResult = true;
+                    }
                     break;
                 case EtatFormulaire.Modifier:
-                    Course.Nom = txtNom.Text;
-                    Course.Date = DateOnly.FromDateTime(dtpDate.SelectedDate.Value);
-                    Course.Ville = txtVille.Text;
-                    Course.Province = (Province)Enum.Parse(typeof(Province), cBoxProvince.Text);
-                    Course.TypeCourse = (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text);
-                    Course.Distance = ushort.Parse(txtDistance.Text);
+                    if (ValiderFormulaire())
+                    {
+                        Course.Nom = txtNom.Text;
+                        Course.Date = DateOnly.FromDateTime(dtpDate.SelectedDate.Value);
+                        Course.Ville = txtVille.Text;
+                        Course.Province = (Province)Enum.Parse(typeof(Province), cBoxProvince.Text);
+                        Course.TypeCourse = (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text);
+                        Course.Distance = ushort.Parse(txtDistance.Text);
 
-                    DialogResult = true;
+                        DialogResult = true;
+                    }
                     break;
                 case EtatFormulaire.Supprimer:
                     MessageBoxResult messageBoxResult = MessageBox.Show("Désirez-vous supprimer la course",
@@ -137,6 +142,32 @@ namespace _420_14B_FX_A24_TP2
                     
                 }
             }
+        }
+
+        private bool ValiderFormulaire()
+        {
+            string message = "";
+
+            if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Trim().Length < 3)
+                message += "Le nom de la course doit contenir au moins trois caractères\n";
+            if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Trim().Length < 4)
+                message += "La ville de la course doit contenir au moins trois caractères\n";
+            if (string.IsNullOrWhiteSpace(cBoxProvince.Text))
+                message += "Vous devez choisir une province\n";
+            if (dtpDate.SelectedDate == null)
+                message += "Vous devez choisir une date pour la course\n";
+            if (string.IsNullOrWhiteSpace(cBoxType.Text))
+                message += "Vous devez choisir un type de course\n";
+            if (!(uint.TryParse(txtDistance.Text, out uint a) && a > 0))
+                message += "La distance doit être plus grande que 1";
+
+            if (message.Length > 0)
+            {
+                MessageBox.Show(message, "Validation");
+                return false;
+            }
+
+            return true;
         }
     }
 }
