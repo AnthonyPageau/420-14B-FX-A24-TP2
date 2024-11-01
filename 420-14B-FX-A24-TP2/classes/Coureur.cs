@@ -8,10 +8,6 @@ namespace _420_14B_FX_A24_TP2.classes
     /// </summary>
     public class Coureur
     {
-
-
-
-
        
         /// <summary>
         /// Numéro du dossard
@@ -209,14 +205,33 @@ namespace _420_14B_FX_A24_TP2.classes
      
         public Coureur(ushort dossard, string nom, string prenom, Categorie categorie, string ville, Province province, TimeSpan temps, bool abandon = false)
         {
-           
-            
+           Dossard = dossard;
+            Nom = nom;
+            Prenom = prenom;
+            Categorie = categorie;
+            Ville = ville;
+            Province = province;
+            Temps = temps;
+            Abandon = abandon;
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string dossard = Dossard.ToString().PadRight(10);
+            string nomprenom = (Nom +',' + Prenom).PadRight(25);
+            string categorie = Categorie.ToString().PadRight(19);
+            string temps = Temps.ToString().PadRight(12);
+            string rang = Rang.ToString();
+
+            return $"{dossard}{nomprenom}{categorie}{temps}{rang}";
         }
 
 
-      
- 
-      
 
-    }
+        }
 }
