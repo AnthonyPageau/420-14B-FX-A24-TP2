@@ -240,5 +240,26 @@ namespace _420_14B_FX_A24_TP2.classes
 
             return $"{nom}{ville}{province}{date}";
         }
+
+        public static bool operator == (Course a, Course b)
+        {
+            if (Object.ReferenceEquals(a, b)) return true;
+
+            if (a is null || b is null) return false;
+
+            return (a.Nom == b.Nom && a.Date == b.Date && a.Ville.ToUpper() == b.Ville.ToUpper() && a.Province == b.Province && a.TypeCourse == b.TypeCourse && a.Distance == b.Distance);
+        }
+
+        public static bool operator != (Course a, Course b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is not Course) return false;
+
+            return this == (Course)obj;
+        }
     }
 }
