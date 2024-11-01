@@ -40,6 +40,7 @@ namespace _420_14B_FX_A24_TP2
         }
         public Fiche_du_coureur(EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
         {
+            Etat = etat;
             Coureur = coureur;
             InitializeComponent();
         }
@@ -47,7 +48,7 @@ namespace _420_14B_FX_A24_TP2
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             tbTitre.Text = $"{Etat} un coureur";
-            btnBouton.Content = Etat;
+            btnAjouter.Content = Etat;
 
             if (_coureur != null)
             {
