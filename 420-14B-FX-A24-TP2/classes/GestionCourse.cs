@@ -71,7 +71,7 @@ namespace _420_14B_FX_A24_TP2.classes
 			}
         }
 
-		public void AJouterCourse(Course course)
+		public void AjouterCourse(Course course)
 		{
 			Courses.Add(course);
 		}
@@ -80,5 +80,26 @@ namespace _420_14B_FX_A24_TP2.classes
 		{
 			Courses.Remove(course);
 		}
+
+        public void EnregistrerCourses(string cheminFichierCourses, string cheminFichierCoureurs)
+		{
+			string courses = "";
+			string coureurs = "";
+
+			courses+=("Id;nom;ville;province;date;type;distance\n");
+			coureurs+=("IdCourse;dossard;nom;prenom;ville;province;categorie;temps;abandon\n");
+
+			foreach(Course course in Courses)
+			{
+				courses+=($"{course.Id};{course.Nom};{course.Ville};{(byte) course.Province};{course.Date};{(byte) course.TypeCourse};{course.Distance}\n");
+				foreach(Coureur coureur in course.Coureurs)
+				{
+					coureurs+=($"{course.Id};{coureur.Dossard};{coureur.Nom};{coureur.Prenom};{coureur.Ville};{(byte) coureur.Province};{(byte) coureur.Categorie};{coureur.Temps};{coureur.Abandon}\n");
+				}
+			}
+
+			Utilitaire.EnregistrerDonnees(cheminFichierCourses, courses);
+			Utilitaire.EnregistrerDonnees(cheminFichierCoureurs, coureurs);
+        }
     }
 }
