@@ -13,7 +13,7 @@ namespace _420_14B_FX_A24_TP2
     public partial class MainWindow : Window
     {
 
-        public const string CHEMIN_FICHIER_COUREURS = @"C:\data-420-14B-FX\TP2\coureurs.csv";
+        public const string CHEMIN_FICHIER_COUREURS = null;
         public const string CHEMIN_FICHIER_COURSES = @"C:\data-420-14B-FX\TP2\courses.csv";
 
         GestionCourse _gestionCourse;
@@ -24,8 +24,16 @@ namespace _420_14B_FX_A24_TP2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _gestionCourse = new GestionCourse();
-            AfficherListeCourses();
+            try
+            {
+                _gestionCourse = new GestionCourse();
+                AfficherListeCourses();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lancement application", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AfficherListeCourses()
@@ -39,12 +47,20 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnNouveau_Click(object sender, RoutedEventArgs e)
         {
-            FormCourse frmCourse = new FormCourse();
-            if(frmCourse.ShowDialog() == true)
+            try
             {
-                _gestionCourse.Courses.Add(frmCourse.Course);
-                AfficherListeCourses();
-                MessageBox.Show("La course a bien été ajouté");
+                FormCourse frmCourse = new FormCourse();
+                if(frmCourse.ShowDialog() == true)
+                {
+                    _gestionCourse.AjouterCourse(frmCourse.Course);
+                    _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSES, CHEMIN_FICHIER_COUREURS);
+                    AfficherListeCourses();
+                    MessageBox.Show("La course a bien été ajouté");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ajout d'une course", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -56,7 +72,7 @@ namespace _420_14B_FX_A24_TP2
                 FormCourse frmCourse = new FormCourse(EtatFormulaire.Modifier, course);
                 if (frmCourse.ShowDialog() == true)
                 {
-                    _gestionCourse.Courses.Add(course);
+                    _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSES, CHEMIN_FICHIER_COUREURS);
                     AfficherListeCourses();
                     MessageBox.Show("La course a bien été ajouté");
                 }
@@ -71,7 +87,8 @@ namespace _420_14B_FX_A24_TP2
                 FormCourse frmCourse = new FormCourse(EtatFormulaire.Supprimer, course);
                 if (frmCourse.ShowDialog() == true)
                 {
-                    _gestionCourse.Courses.Remove(course);
+                    _gestionCourse.SupprimerCourse(course);
+                    _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSES, CHEMIN_FICHIER_COUREURS);
                     AfficherListeCourses();
                     MessageBox.Show("La course a bien été supprimé");
                 }

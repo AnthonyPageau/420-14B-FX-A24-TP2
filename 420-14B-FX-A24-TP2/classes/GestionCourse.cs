@@ -25,7 +25,12 @@ namespace _420_14B_FX_A24_TP2.classes
 
         private void ChargerCourse(string cheminFichierCourses, string cheminFichierCoureurs)
 		{
-			string[] vectCourses = Utilitaire.ChargerDonnees(cheminFichierCourses);
+            if (string.IsNullOrWhiteSpace(cheminFichierCourses))
+                throw new ArgumentNullException("Impossible de lire le fichier des courses");
+            if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
+                throw new ArgumentNullException("Impossible de lire le fichier des coureurs");
+
+            string[] vectCourses = Utilitaire.ChargerDonnees(cheminFichierCourses);
 
 			for (int i = 1; i < vectCourses.Length; i++)
 			{
@@ -47,7 +52,10 @@ namespace _420_14B_FX_A24_TP2.classes
 
         private void ChargerCoureurs(Course course, string cheminFichierCoureurs)
 		{
-			string[] vectCoureurs = Utilitaire.ChargerDonnees(cheminFichierCoureurs);
+            if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
+                throw new ArgumentNullException("Impossible de lire le fichier des coureurs");
+
+            string[] vectCoureurs = Utilitaire.ChargerDonnees(cheminFichierCoureurs);
 
 			for (int i = 1; i < vectCoureurs.Length; i++)
 			{
@@ -71,14 +79,61 @@ namespace _420_14B_FX_A24_TP2.classes
 			}
         }
 
-		public void AJouterCourse(Course course)
+		public void AjouterCourse(Course course)
 		{
-			Courses.Add(course);
+			if (course is null)
+				throw new ArgumentNullException(nameof(course), "Le film ne peut être nul");
+            if (Existe(course))
+                throw new InvalidOperationException("Impossible d'ajouter la course, car elle existe déjà");
+
+            Courses.Add(course);
 		}
 
 		public void SupprimerCourse(Course course)
 		{
+            if (course is null)
+                throw new ArgumentNullException(nameof(course), "Le film ne peut être nul");
+
+			if (!Existe(course))
+				throw new InvalidOperationException("Impossible de supprimer la course, car elle n'exite pas dans la liste");
+
 			Courses.Remove(course);
 		}
+
+		public bool Existe(Course course)
+		{
+			foreach (Course c in Courses)
+			{
+				if (course == c) return true;
+			}
+
+			return false;
+		}
+
+        public void EnregistrerCourses(string cheminFichierCourses, string cheminFichierCoureurs)
+		{
+			if (string.IsNullOrWhiteSpace(cheminFichierCourses))
+				throw new ArgumentNullException("Impossible de lire le fichier des courses");
+			if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
+				throw new ArgumentOutOfRangeException("Impossible de lire le fichier des coureurs");
+
+            string courses = "";
+			string coureurs = "";
+
+			courses+=("Id;nom;ville;province;date;type;distance\n");
+			coureurs+=("IdCourse;dossard;nom;prenom;ville;province;categorie;temps;abandon\n");
+
+			foreach(Course course in Courses)
+			{
+				courses+=($"{course.Id};{course.Nom};{course.Ville};{(byte) course.Province};{course.Date};{(byte) course.TypeCourse};{course.Distance}\n");
+				foreach(Coureur coureur in course.Coureurs)
+				{
+					coureurs+=($"{course.Id};{coureur.Dossard};{coureur.Nom};{coureur.Prenom};{coureur.Ville};{(byte) coureur.Province};{(byte) coureur.Categorie};{coureur.Temps};{coureur.Abandon}\n");
+				}
+			}
+
+			Utilitaire.EnregistrerDonnees(cheminFichierCourses, courses);
+			Utilitaire.EnregistrerDonnees(cheminFichierCoureurs, coureurs);
+        }
     }
 }
