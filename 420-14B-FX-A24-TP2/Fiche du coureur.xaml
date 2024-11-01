@@ -11,38 +11,63 @@
         <TextBlock x:Name="tbTitre" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Modification d'un coureur</TextBlock>
         <StackPanel Orientation="Horizontal" >
             <Label Width="80">No. dossard</Label>
-            <TextBox x:Name="dossard" Width="50"></TextBox>
+            <TextBox x:Name="txtDossard" Width="50"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Width="80">Nom</Label>
-            <TextBox x:Name="nom" Width="210"></TextBox>
+            <TextBox x:Name="txtNom" Width="210"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Width="80">Prénom</Label>
-            <TextBox x:Name="prenom" Width="210"></TextBox>
+            <TextBox x:Name="txtPrenom" Width="210"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Width="80">Ville</Label>
-            <TextBox x:Name="ville" Width="210"></TextBox>
+            <TextBox x:Name="txtVille" Width="210"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Width="80">Pays</Label>
-            <ComboBox x:Name="cboProvince" Width="210"></ComboBox>
+            <Label Width="80">Province</Label>
+            <ComboBox x:Name="cboProvince" Width="210">
+                <ComboBoxItem Content="Alberta"></ComboBoxItem>
+                <ComboBoxItem Content="ColombieBritannique"></ComboBoxItem>
+                <ComboBoxItem Content="IlePrinceEdouard"></ComboBoxItem>
+                <ComboBoxItem Content="Manitoba"></ComboBoxItem>
+                <ComboBoxItem Content="NouveauBrunswick"></ComboBoxItem>
+                <ComboBoxItem Content="NouvelleEcosse"></ComboBoxItem>
+                <ComboBoxItem Content="Nunavut"></ComboBoxItem>
+                <ComboBoxItem Content="Ontario"></ComboBoxItem>
+                <ComboBoxItem Content="Quebec"></ComboBoxItem>
+                <ComboBoxItem Content="Saskatchewan"></ComboBoxItem>
+                <ComboBoxItem Content="TerreNeuveLabrador"></ComboBoxItem>
+                <ComboBoxItem Content="TerritoiresNordOuest"></ComboBoxItem>
+                <ComboBoxItem Content="Yukon"></ComboBoxItem>
+            </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Width="80">Catégorie</Label>
-            <ComboBox x:Name="cboCategorie" Width="210"></ComboBox>
+            <ComboBox x:Name="cboCategorie" Width="210">
+                <ComboBoxItem Content="M2029"></ComboBoxItem>
+                <ComboBoxItem Content="M3039"></ComboBoxItem>
+                <ComboBoxItem Content="M4049"></ComboBoxItem>
+                <ComboBoxItem Content="M5059"></ComboBoxItem>
+                <ComboBoxItem Content="M6069"></ComboBoxItem>
+                <ComboBoxItem Content="F2029"></ComboBoxItem>
+                <ComboBoxItem Content="F3039"></ComboBoxItem>
+                <ComboBoxItem Content="F4049"></ComboBoxItem>
+                <ComboBoxItem Content="F5059"></ComboBoxItem>
+                <ComboBoxItem Content="F6069"></ComboBoxItem>
+            </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Grid.Row="2" Text="Temps" Width="80"/>
-            <xctk:TimeSpanUpDown x:Name="tsptemps" Width="100" ShowDays="False" Minimum="0"></xctk:TimeSpanUpDown>
+            <xctk:TimeSpanUpDown x:Name="tspTemps" Width="100" ShowDays="False" Minimum="0"></xctk:TimeSpanUpDown>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
-            <CheckBox Content="Abandon" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="checkBonton" Content="Abandon" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="80,0,0,0">
-            <Button x:Name="btnModifier" Width="100">Modifier</Button>
-            <Button x:Name="btnAnnuler" Width="100" Margin="10,0,0,0">Annuler</Button>
+            <Button x:Name="btnBouton" Width="100">Modifier</Button>
+            <Button x:Name="btnAnnuler" Width="100" Margin="10,0,0,0" Click="btnAnnuler_Click">Annuler</Button>
         </StackPanel>
         
     </StackPanel>

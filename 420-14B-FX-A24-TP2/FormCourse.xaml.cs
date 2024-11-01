@@ -120,5 +120,23 @@ namespace _420_14B_FX_A24_TP2
         {
             DialogResult = false;
         }
+
+        private void btnAjouterCoureur_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstCoureurs.SelectedItem != null)
+            {
+                Coureur coureur = lstCoureurs.SelectedItem as Coureur;
+                Fiche_du_coureur frmCoureur = new Fiche_du_coureur(EtatFormulaire.Modifier, coureur);
+                if (frmCoureur.ShowDialog() == true)
+                {
+                    
+                }
+            }
+        }
     }
 }
