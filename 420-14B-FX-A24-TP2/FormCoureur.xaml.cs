@@ -20,7 +20,7 @@ namespace _420_14B_FX_A24_TP2
     /// <summary>
     /// Logique d'interaction pour Fiche_du_coureur.xaml
     /// </summary>
-    public partial class Fiche_du_coureur : Window
+    public partial class FormCoureur : Window
     {
 
         private Coureur _coureur;
@@ -38,7 +38,7 @@ namespace _420_14B_FX_A24_TP2
             get { return _etat; }
             set { _etat = value; }
         }
-        public Fiche_du_coureur(EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
+        public FormCoureur(EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
         {
             Etat = etat;
             Coureur = coureur;
