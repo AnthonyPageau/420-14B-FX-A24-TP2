@@ -165,7 +165,7 @@ namespace _420_14B_FX_A24_TP2
 
             private void btnAjouterCoureur_Click(object sender, RoutedEventArgs e)
             {
-                FormCourse frmCoureur = new FormCourse();
+                FormCoureur frmCoureur = new FormCoureur();
                 if (frmCoureur.ShowDialog() == true)
                 {
 
@@ -198,8 +198,8 @@ namespace _420_14B_FX_A24_TP2
             {
                 if (lstCoureurs.SelectedItem != null)
                 {
-                    Course course = lstCoureurs.SelectedItem as Course;
-                    FormCourse frmCourse = new FormCourse(EtatFormulaire.Supprimer, course);
+                    Coureur coureur = lstCoureurs.SelectedItem as Coureur;
+                    FormCoureur frmCourse = new FormCoureur(EtatFormulaire.Supprimer, coureur);
                     if (frmCourse.ShowDialog() == true)
                     {
                         AfficherListeCoureur();
