@@ -50,7 +50,7 @@ namespace _420_14B_FX_A24_TP2
             tbTitre.Text = $"{Etat} un coureur";
             btnAjouter.Content = Etat;
 
-            if (_coureur != null)
+            if (Etat != EtatFormulaire.Ajouter && Coureur != null)
             {
                 txtDossard.Text = Coureur.Dossard.ToString();
                 txtNom.Text = Coureur.Nom;
@@ -59,6 +59,18 @@ namespace _420_14B_FX_A24_TP2
                 cboProvince.Text = Coureur.Province.ToString();
                 cboCategorie.Text = Coureur.Categorie.ToString();
                 tspTemps.Text = Coureur.Temps.ToString();
+
+                if (Etat == EtatFormulaire.Supprimer) 
+                {
+                    txtDossard.IsEnabled = false;
+                    txtNom.IsEnabled = false;
+                    txtPrenom.IsEnabled = false;
+                    txtVille.IsEnabled = false;
+                    cboProvince.IsEnabled = false;
+                    cboCategorie.IsEnabled = false;
+                    tspTemps.IsEnabled = false;
+
+                }
             }
         }
 
