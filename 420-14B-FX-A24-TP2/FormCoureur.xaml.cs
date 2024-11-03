@@ -45,6 +45,7 @@ namespace _420_14B_FX_A24_TP2
             InitializeComponent();
         }
 
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             tbTitre.Text = $"{Etat} un coureur";
@@ -59,7 +60,7 @@ namespace _420_14B_FX_A24_TP2
                 cboProvince.Text = Coureur.Province.ToString();
                 cboCategorie.Text = Coureur.Categorie.ToString();
                 tspTemps.Text = Coureur.Temps.ToString();
-
+                //faire le check box si il a abbandonner
                 if (Etat == EtatFormulaire.Supprimer) 
                 {
                     txtDossard.IsEnabled = false;
@@ -69,9 +70,51 @@ namespace _420_14B_FX_A24_TP2
                     cboProvince.IsEnabled = false;
                     cboCategorie.IsEnabled = false;
                     tspTemps.IsEnabled = false;
-
+                    checkAbandon.IsEnabled = false;
                 }
             }
+        }
+
+
+        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            switch (Etat)
+            {
+                case EtatFormulaire.Ajouter:
+                    Coureur = new Coureur(
+                        ushort.Parse(txtDossard.Text),
+                        txtNom.Text,
+                        txtPrenom.Text,
+                        (Categorie)Enum.Parse(typeof(Categorie),
+                        cboCategorie.Text),
+                        txtVille.Text,
+                        (Province)Enum.Parse(typeof(Province),
+                        cboProvince.Text),
+                        TimeSpan.Parse(tspTemps.Text),
+                        checkAbandon.IsChecked.Value);
+
+                    DialogResult = true;
+                    break;
+                case EtatFormulaire.Modifier:
+                    Coureur.Dossard = ushort.Parse(txtDossard.Text);
+                    Coureur.Nom = txtNom.Text;
+                    Coureur.Prenom = txtPrenom.Text;
+                    Coureur.Ville = txtVille.Text;
+                    Coureur.Province = (Province)Enum.Parse(typeof(Province), cboProvince.Text);
+                    Coureur.Categorie = (Categorie)Enum.Parse(typeof(Categorie), cboCategorie.Text);
+                    Coureur.Temps = TimeSpan.Parse(tspTemps.Text);
+                    Coureur.Abandon = checkAbandon.IsChecked.Value;
+                    DialogResult = true;
+                    break;
+                case EtatFormulaire.Supprimer:
+                    MessageBoxResult messageResult = MessageBox.Show("Desirez-vous supprimer le coureur?", "Suppression d'un coureur", MessageBoxButton.YesNo, MessageBoxImage.Question,MessageBoxResult.No);
+                    if (messageResult == MessageBoxResult.Yes)
+                        DialogResult = true;
+                    else
+                        DialogResult = false;
+                    break;
+            }
+
         }
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
