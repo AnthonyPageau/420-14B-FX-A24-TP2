@@ -78,6 +78,9 @@ namespace _420_14B_FX_A24_TP2
                     txtNbrParticipant.IsEnabled = false;
                     cBoxProvince.IsEnabled = false;
                     cBoxType.IsEnabled = false;
+                    btnAjouterCoureur.IsEnabled = false;
+                    btnModifier.IsEnabled = false;
+                    btnSupprimer.IsEnabled = false;
                 }
             }
         }

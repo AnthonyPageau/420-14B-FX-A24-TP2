@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace _420_14B_FX_A24_TP2
 {
-    /// <summary>
-    /// Logique d'interaction pour Fiche_du_coureur.xaml
-    /// </summary>
     public partial class FormCoureur : Window
     {
 
