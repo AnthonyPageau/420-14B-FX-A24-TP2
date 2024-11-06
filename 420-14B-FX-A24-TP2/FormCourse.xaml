@@ -77,7 +77,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="btnAjouterCoureur" Width="80" Margin="10 ,0 ,5 ,20" Click="btnAjouterCoureur_Click">Ajouter</Button>
                             <Button x:Name="btnModifier" Width="80" Margin="5, 0, 5, 20" Click="btnModifier_Click">Modifier</Button>
-                            <Button x:Name="btnSupprimer" Width="80" Margin="5, 0, 5, 20">Supprimer</Button>
+                            <Button x:Name="btnSupprimer" Width="80" Margin="5, 0, 5, 20" Click="btnSupprimer_Click">Supprimer</Button>
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
