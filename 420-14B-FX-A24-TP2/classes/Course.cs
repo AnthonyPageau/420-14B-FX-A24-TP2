@@ -1,6 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -270,6 +271,23 @@ namespace _420_14B_FX_A24_TP2.classes
             if (obj is not Course) return false;
 
             return this == (Course)obj;
+        }
+
+        public void AjouterCoureur(Coureur coureur)
+        {
+            if (coureur is null)
+                throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut être nul");
+            foreach (Coureur c in Coureurs)
+            {
+                if (c.Dossard == coureur.Dossard)
+                throw new InvalidOperationException("Il existe déjà un coureur avec ce numero de dossard");
+            }
+            foreach (Coureur c in Coureurs)
+            {
+                if (c.Nom == coureur.Nom && c.Prenom == coureur.Prenom)
+                    throw new InvalidOperationException("Ce coureur existe déjà avec un autre numéro de dossard");
+            }
+            Coureurs.Add(coureur);
         }
     }
 }
