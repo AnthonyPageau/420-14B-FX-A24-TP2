@@ -273,6 +273,7 @@ namespace _420_14B_FX_A24_TP2.classes
             return this == (Course)obj;
         }
 
+        //Pas certain de la méthode pour la derniere exeption
         public void AjouterCoureur(Coureur coureur)
         {
             if (coureur is null)
@@ -284,10 +285,19 @@ namespace _420_14B_FX_A24_TP2.classes
             }
             foreach (Coureur c in Coureurs)
             {
-                if (c.Nom == coureur.Nom && c.Prenom == coureur.Prenom)
+                if (c.Nom == coureur.Nom && c.Prenom == coureur.Prenom && c.Ville == coureur.Ville)
                     throw new InvalidOperationException("Ce coureur existe déjà avec un autre numéro de dossard");
             }
             Coureurs.Add(coureur);
+        }
+
+        public void SupprimerCoureur(Coureur coureur)
+        {
+            if (coureur is null)
+                throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut pas être nul");
+            if (!Coureurs.Contains(coureur))
+                throw new InvalidOperationException("Le coureur n'existe pas dans la liste des coureurs");
+            Coureurs.Remove(coureur);
         }
     }
 }
