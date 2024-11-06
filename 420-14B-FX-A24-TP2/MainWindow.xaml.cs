@@ -13,7 +13,7 @@ namespace _420_14B_FX_A24_TP2
     public partial class MainWindow : Window
     {
 
-        public const string CHEMIN_FICHIER_COUREURS = null;
+        public const string CHEMIN_FICHIER_COUREURS = @"C:\data-420-14B-FX\TP2\coureurs.csv";
         public const string CHEMIN_FICHIER_COURSES = @"C:\data-420-14B-FX\TP2\courses.csv";
 
         GestionCourse _gestionCourse;

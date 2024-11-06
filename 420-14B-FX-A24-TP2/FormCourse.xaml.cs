@@ -149,9 +149,9 @@ namespace _420_14B_FX_A24_TP2
             string message = "";
 
             if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Trim().Length < 3)
-                message += "Le nom de la course doit contenir au moins trois caractères\n";
+                message += $"Le nom de la course doit contenir au moins {Course.NOM_NB_CAR_MIN} caractères\n";
             if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Trim().Length < 4)
-                message += "La ville de la course doit contenir au moins quatre caractères\n";
+                message += $"La ville de la course doit contenir au moins {Course.VILLE_NB_CAR_MIN} caractères\n";
             if (string.IsNullOrWhiteSpace(cBoxProvince.Text))
                 message += "Vous devez choisir une province\n";
             if (dtpDate.SelectedDate == null)
@@ -159,7 +159,7 @@ namespace _420_14B_FX_A24_TP2
             if (string.IsNullOrWhiteSpace(cBoxType.Text))
                 message += "Vous devez choisir un type de course\n";
             if (!(uint.TryParse(txtDistance.Text, out uint a) && a > 0))
-                message += "La distance doit être plus grande que 1";
+                message += $"La distance doit être plus grande que {Course.DISTANCE_VAL_MIN}";
 
             if (message.Length > 0)
             {

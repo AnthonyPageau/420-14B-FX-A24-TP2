@@ -1,5 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System.Windows.Controls;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -8,8 +9,10 @@ namespace _420_14B_FX_A24_TP2.classes
     /// </summary>
     public class Course
     {
-  
-       
+
+        public const byte NOM_NB_CAR_MIN = 3;
+        public const byte VILLE_NB_CAR_MIN = 3;
+        public const float DISTANCE_VAL_MIN = 1.0f;
 
 
         /// <summary>
@@ -65,9 +68,8 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             get { return _id; }
             set {
-                    
-               
-                _id = value; 
+                if (value != Guid.Empty)
+                    _id = value;
             }
         }
 
@@ -85,7 +87,10 @@ namespace _420_14B_FX_A24_TP2.classes
 
             set 
             {
-
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException(nameof(Nom), "Le nom ne doit pas être vide");
+                if (value.Trim().Length < NOM_NB_CAR_MIN)
+                    throw new ArgumentException(nameof(Nom), $"La ville doit contenir {NOM_NB_CAR_MIN} caractères");
                 _nom = value.Trim().ToUpper(); 
             }
         }
@@ -113,8 +118,10 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set 
             {
-             
-
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException(nameof(Nom), "La ville ne doit pas être vide");
+                if (value.Trim().Length < VILLE_NB_CAR_MIN)
+                    throw new ArgumentException(nameof(Nom), $"La ville doit contenir {VILLE_NB_CAR_MIN} caractères");
                 _ville = value.Trim(); 
             }
         }
@@ -132,8 +139,9 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _province; }
             set 
             {
-
-                _province = value; 
+                if (!Enum.IsDefined(typeof(Province), value))
+                    throw new ArgumentException(nameof(Province), $"La province ne fait pas partie de celles disponibles");
+                _province = value;
             }
         }
 
@@ -148,8 +156,9 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _typeCourse; }
             set 
             {
-             
-                _typeCourse = value; 
+                if (!Enum.IsDefined(typeof(TypeCourse), value))
+                    throw new ArgumentException(nameof(TypeCourse), $"Le type de course ne fait pas partie de ceux disponibles");
+                _typeCourse = value;
             }
         }
 
@@ -163,7 +172,8 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _distance; }
             set 
             {
-               
+                if (value < DISTANCE_VAL_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Distance), $"La distance doit être d'au moins {DISTANCE_VAL_MIN}");
                 _distance = value; 
             }
         }
