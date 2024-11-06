@@ -1,6 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -10,7 +11,7 @@ namespace _420_14B_FX_A24_TP2.classes
     public class Course
     {
 
-        public const byte NOM_NB_CAR_MIN = 3;
+        public const byte NOM_COURSE_NB_CAR_MIN = 3;
         public const byte VILLE_NB_CAR_MIN = 3;
         public const float DISTANCE_VAL_MIN = 1.0f;
 
@@ -89,8 +90,8 @@ namespace _420_14B_FX_A24_TP2.classes
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Nom), "Le nom ne doit pas être vide");
-                if (value.Trim().Length < NOM_NB_CAR_MIN)
-                    throw new ArgumentException(nameof(Nom), $"La ville doit contenir {NOM_NB_CAR_MIN} caractères");
+                if (value.Trim().Length < NOM_COURSE_NB_CAR_MIN)
+                    throw new ArgumentException(nameof(Nom), $"La ville doit contenir {NOM_COURSE_NB_CAR_MIN} caractères");
                 _nom = value.Trim().ToUpper(); 
             }
         }
@@ -300,6 +301,33 @@ namespace _420_14B_FX_A24_TP2.classes
             if (obj is not Course) return false;
 
             return this == (Course)obj;
+        }
+
+        //Pas certain de la méthode pour la derniere exeption
+        public void AjouterCoureur(Coureur coureur)
+        {
+            if (coureur is null)
+                throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut être nul");
+            foreach (Coureur c in Coureurs)
+            {
+                if (c.Dossard == coureur.Dossard)
+                throw new InvalidOperationException("Il existe déjà un coureur avec ce numero de dossard");
+            }
+            foreach (Coureur c in Coureurs)
+            {
+                if (c.Nom == coureur.Nom && c.Prenom == coureur.Prenom && c.Ville == coureur.Ville)
+                    throw new InvalidOperationException("Ce coureur existe déjà avec un autre numéro de dossard");
+            }
+            Coureurs.Add(coureur);
+        }
+
+        public void SupprimerCoureur(Coureur coureur)
+        {
+            if (coureur is null)
+                throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut pas être nul");
+            if (!Coureurs.Contains(coureur))
+                throw new InvalidOperationException("Le coureur n'existe pas dans la liste des coureurs");
+            Coureurs.Remove(coureur);
         }
     }
 }

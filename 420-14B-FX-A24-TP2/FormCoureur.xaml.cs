@@ -88,7 +88,8 @@ namespace _420_14B_FX_A24_TP2
                         (Province)Enum.Parse(typeof(Province),
                         cboProvince.Text),
                         TimeSpan.Parse(tspTemps.Text),
-                        checkAbandon.IsChecked.Value);
+                        checkAbandon.IsChecked.Value
+                        );
 
                     DialogResult = true;
                     break;
@@ -111,6 +112,7 @@ namespace _420_14B_FX_A24_TP2
                         DialogResult = false;
                     break;
             }
+
 
         }
 
