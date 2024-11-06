@@ -11,7 +11,7 @@ namespace _420_14B_FX_A24_TP2.classes
     public class Course
     {
 
-        public const byte NOM_NB_CAR_MIN = 3;
+        public const byte NOM_COURSE_NB_CAR_MIN = 3;
         public const byte VILLE_NB_CAR_MIN = 3;
         public const float DISTANCE_VAL_MIN = 1.0f;
 
@@ -90,8 +90,8 @@ namespace _420_14B_FX_A24_TP2.classes
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Nom), "Le nom ne doit pas être vide");
-                if (value.Trim().Length < NOM_NB_CAR_MIN)
-                    throw new ArgumentException(nameof(Nom), $"La ville doit contenir {NOM_NB_CAR_MIN} caractères");
+                if (value.Trim().Length < NOM_COURSE_NB_CAR_MIN)
+                    throw new ArgumentException(nameof(Nom), $"La ville doit contenir {NOM_COURSE_NB_CAR_MIN} caractères");
                 _nom = value.Trim().ToUpper(); 
             }
         }

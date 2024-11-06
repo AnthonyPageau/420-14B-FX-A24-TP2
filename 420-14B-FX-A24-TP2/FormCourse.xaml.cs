@@ -97,7 +97,7 @@ namespace _420_14B_FX_A24_TP2
             string message = "";
 
             if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Trim().Length < 3)
-                message += $"Le nom de la course doit contenir au moins {Course.NOM_NB_CAR_MIN} caractères\n";
+                message += $"Le nom de la course doit contenir au moins {Course.NOM_COURSE_NB_CAR_MIN} caractères\n";
             if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Trim().Length < 4)
                 message += $"La ville de la course doit contenir au moins {Course.VILLE_NB_CAR_MIN} caractères\n";
             if (string.IsNullOrWhiteSpace(cBoxProvince.Text))
