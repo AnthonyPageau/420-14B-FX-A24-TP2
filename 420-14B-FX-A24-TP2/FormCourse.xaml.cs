@@ -59,6 +59,7 @@ namespace _420_14B_FX_A24_TP2
                 cBoxType.Text = Course.TypeCourse.ToString();
                 txtDistance.Text = Course.Distance.ToString();
                 txtNbrParticipant.Text = Course.Coureurs.Count.ToString();
+                txtTempsCourse.Text = Course.TempCourseMoyen.ToString();
 
                 foreach (Coureur coureur in Course.Coureurs)
                 {
@@ -211,9 +212,5 @@ namespace _420_14B_FX_A24_TP2
                     }
                 }
             }
-
-
-
-
         }
     }

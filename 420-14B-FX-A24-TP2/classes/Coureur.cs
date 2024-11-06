@@ -8,6 +8,7 @@ namespace _420_14B_FX_A24_TP2.classes
     /// </summary>
     public class Coureur
     {
+        public const int DOSSARD_VAL_MIN = 1;
        
         /// <summary>
         /// Numéro du dossard

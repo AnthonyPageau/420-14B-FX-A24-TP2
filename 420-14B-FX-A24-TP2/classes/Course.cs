@@ -209,8 +209,8 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <value>Obtien la valeur retourné par la méthode : CalculerTempsCourseMoyen() </value>
         public TimeSpan TempCourseMoyen
         {
-            get { 
-                throw new NotImplementedException(); 
+            get {
+                return CalculerTempsCourseMoyen();
             }
           
         }
@@ -240,6 +240,36 @@ namespace _420_14B_FX_A24_TP2.classes
             Coureurs = new List<Coureur>();
         }
 
+
+        public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
+        {
+            if (noDossard < Coureur.DOSSARD_VAL_MIN)
+                throw new ArgumentOutOfRangeException("Dossard", $"Le numéro du dossard doit être supérieur à {Coureur.DOSSARD_VAL_MIN}");
+
+            foreach (Coureur c in Coureurs)
+            {
+                if (c.Dossard == noDossard)
+                    return c;
+            }
+
+            return null;
+        }
+
+        private TimeSpan CalculerTempsCourseMoyen()
+        {
+            int compteur = 0;
+            TimeSpan tempsTotale = TimeSpan.Zero;
+            foreach(Coureur c in Coureurs)
+            {
+                if (!c.Abandon)
+                {
+                    compteur++;
+                    tempsTotale += c.Temps;
+                }
+            }
+
+            return compteur == 0 ? TimeSpan.Zero : tempsTotale / compteur;    
+        }
 
         public override string ToString()
         {

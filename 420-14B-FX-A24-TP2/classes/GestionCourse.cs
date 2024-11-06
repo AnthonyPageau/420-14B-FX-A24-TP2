@@ -82,7 +82,7 @@ namespace _420_14B_FX_A24_TP2.classes
 		public void AjouterCourse(Course course)
 		{
 			if (course is null)
-				throw new ArgumentNullException(nameof(course), "Le film ne peut être nul");
+				throw new ArgumentNullException(nameof(course), "La course ne peut être vide");
             if (Existe(course))
                 throw new InvalidOperationException("Impossible d'ajouter la course, car elle existe déjà");
 
@@ -92,7 +92,7 @@ namespace _420_14B_FX_A24_TP2.classes
 		public void SupprimerCourse(Course course)
 		{
             if (course is null)
-                throw new ArgumentNullException(nameof(course), "Le film ne peut être nul");
+                throw new ArgumentNullException(nameof(course), "La course ne peut être vide");
 
 			if (!Existe(course))
 				throw new InvalidOperationException("Impossible de supprimer la course, car elle n'exite pas dans la liste");
