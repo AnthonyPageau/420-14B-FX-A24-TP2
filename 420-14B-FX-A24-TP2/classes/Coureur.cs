@@ -9,7 +9,10 @@ namespace _420_14B_FX_A24_TP2.classes
     public class Coureur
     {
         public const int DOSSARD_VAL_MIN = 1;
-       
+        public const int NOM_NB_CARC_MIN = 4;
+        public const int PRENOM_NB_CARC_MIN = 4;
+        public const int VILLE_NB_CARC_MIN = 4;
+
         /// <summary>
         /// Numéro du dossard
         /// </summary>

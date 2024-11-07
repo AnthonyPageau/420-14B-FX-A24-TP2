@@ -26,7 +26,7 @@ namespace _420_14B_FX_A24_TP2
         {
             try
             {
-                _gestionCourse = new GestionCourse();
+                _gestionCourse = new GestionCourse(CHEMIN_FICHIER_COURSES, CHEMIN_FICHIER_COUREURS);
                 AfficherListeCourses();
 
             }

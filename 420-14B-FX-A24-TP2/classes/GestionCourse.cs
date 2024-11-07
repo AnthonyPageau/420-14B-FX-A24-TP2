@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
-    class GestionCourse
+    public class GestionCourse
     {
 		private List<Course> _courses;
 
@@ -17,10 +17,10 @@ namespace _420_14B_FX_A24_TP2.classes
 			set { _courses = value; }
 		}
 
-		public GestionCourse()
+		public GestionCourse(string cheminFichierCourses, string cheminFichierCoureurs)
 		{
 			Courses = new List<Course>();
-			ChargerCourse(MainWindow.CHEMIN_FICHIER_COURSES, MainWindow.CHEMIN_FICHIER_COUREURS);
+			ChargerCourse(cheminFichierCourses, cheminFichierCoureurs);
 		}
 
         private void ChargerCourse(string cheminFichierCourses, string cheminFichierCoureurs)
