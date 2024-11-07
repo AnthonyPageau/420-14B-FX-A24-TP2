@@ -1,5 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -8,7 +9,7 @@ namespace _420_14B_FX_A24_TP2.classes
     /// <summary>
     /// Classe représentant une course à pied
     /// </summary>
-    public class Course
+    public class Course : IComparable<Course>
     {
 
         public const byte NOM_NB_CAR_MIN = 3;
@@ -240,7 +241,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
         public void TrierCoureurs()
         {
-
+            Coureurs.Sort();
         }
 
         public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
@@ -302,6 +303,19 @@ namespace _420_14B_FX_A24_TP2.classes
             if (obj is not Course) return false;
 
             return this == (Course)obj;
+        }
+
+        public int CompareTo(Course? other)
+        {
+            if (other is null)
+                return 1;
+
+            int resComp = Date.CompareTo(other.Date) * -1;
+
+            if (resComp != 0)
+                return resComp;
+
+            return string.Compare(Nom, other.Nom, CultureInfo.CurrentCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace);
         }
 
         //Pas certain de la méthode pour la derniere exeption
