@@ -107,7 +107,7 @@ namespace _420_14B_FX_A24_TP2
                 message += "Vous devez choisir une date pour la course\n";
             if (string.IsNullOrWhiteSpace(cBoxType.Text))
                 message += "Vous devez choisir un type de course\n";
-            if (!(uint.TryParse(txtDistance.Text, out uint a) && a > 0))
+            if (!(uint.TryParse(txtDistance.Text, out uint a) && a > Course.DISTANCE_VAL_MIN))
                 message += $"La distance doit être plus grande que {Course.DISTANCE_VAL_MIN}";
 
             if (message.Length > 0)

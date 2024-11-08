@@ -93,7 +93,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Nom), "Le nom ne doit pas être vide");
                 if (value.Trim().Length < NOM_NB_CAR_MIN)
-                    throw new ArgumentOutOfRangeException(nameof(Nom), $"La ville doit contenir {NOM_NB_CAR_MIN} caractères");
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir {NOM_NB_CAR_MIN} caractères");
                 _nom = value.Trim().ToUpper(); 
             }
         }
@@ -115,7 +115,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <value>Obtien ou modifie la valeur de l'attribut :  _ville.</value>
         /// <exception cref="System.ArgumentNullException">Lancée lorsque que la ville est nulle ou n'a aucune valeur.</exception>
-        /// <exception cref="System.ArgumentException">Lancé lors que la ville a moins de VILLE_NB_CAR_MIN caractères.</exception>
+        /// <exception cref="System.ArgumentException">Lancé lors que la ville a moins de NOM_COURSE_NB_CAR_MIN caractères.</exception>
         public string Ville
         {
             get { return _ville; }
