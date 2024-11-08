@@ -272,7 +272,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
         public static bool operator ==(Coureur coureur, Coureur other)
         {
-            if (coureur is null)
+            if (other is null)
                 return false;
 
             return (coureur.Nom == other.Nom && coureur.Prenom == other.Prenom && coureur.Ville == other.Ville && coureur.Province == other.Province && coureur.Temps == other.Temps && coureur.Abandon == other.Abandon);

@@ -63,12 +63,12 @@ namespace _420_14B_FX_A24_TP2
                     _gestionCourse.AjouterCourse(frmCourse.Course);
                     _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSES, CHEMIN_FICHIER_COUREURS);
                     AfficherListeCourses();
-                    MessageBox.Show("La course a bien été ajouté");
+                    MessageBox.Show("La course a été ajoutée avec succès");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ajout d'une course", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Ajout d'une course", MessageBoxButton.OK);
             }
         }
 

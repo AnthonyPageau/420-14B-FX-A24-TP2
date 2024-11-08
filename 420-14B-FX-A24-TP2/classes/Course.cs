@@ -13,7 +13,7 @@ namespace _420_14B_FX_A24_TP2.classes
     {
 
         public const byte NOM_NB_CAR_MIN = 3;
-        public const byte VILLE_NB_CAR_MIN = 3;
+        public const byte VILLE_NB_CAR_MIN = 4;
         public const ushort DISTANCE_VAL_MIN = 1;
 
 

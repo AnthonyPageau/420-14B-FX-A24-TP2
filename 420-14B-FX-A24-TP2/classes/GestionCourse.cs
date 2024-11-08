@@ -71,6 +71,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
 				ChargerCoureurs(course, cheminFichierCoureurs);
             }
+			Courses.Sort();
         }
 
 

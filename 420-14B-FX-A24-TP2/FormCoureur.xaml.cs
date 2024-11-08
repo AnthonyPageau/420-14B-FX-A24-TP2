@@ -78,7 +78,9 @@ namespace _420_14B_FX_A24_TP2
             switch (Etat)
             {
                 case EtatFormulaire.Ajouter:
-                    Coureur = new Coureur(
+                    if (ValiderFormulaire()) {
+
+                        Coureur = new Coureur(
                         ushort.Parse(txtDossard.Text),
                         txtNom.Text,
                         txtPrenom.Text,
@@ -87,22 +89,26 @@ namespace _420_14B_FX_A24_TP2
                         txtVille.Text,
                         (Province)Enum.Parse(typeof(Province),
                         cboProvince.Text),
-                        TimeSpan.Parse(tspTemps.Text),
-                        checkAbandon.IsChecked.Value
+                        TimeSpan.Zero,
+                        false
                         );
 
-                    DialogResult = true;
+                        DialogResult = true;
+                    }
                     break;
                 case EtatFormulaire.Modifier:
-                    Coureur.Dossard = ushort.Parse(txtDossard.Text);
-                    Coureur.Nom = txtNom.Text;
-                    Coureur.Prenom = txtPrenom.Text;
-                    Coureur.Ville = txtVille.Text;
-                    Coureur.Province = (Province)Enum.Parse(typeof(Province), cboProvince.Text);
-                    Coureur.Categorie = (Categorie)Enum.Parse(typeof(Categorie), cboCategorie.Text);
-                    Coureur.Temps = TimeSpan.Parse(tspTemps.Text);
-                    Coureur.Abandon = checkAbandon.IsChecked.Value;
-                    DialogResult = true;
+                    if (ValiderFormulaire())
+                    {
+                        Coureur.Dossard = ushort.Parse(txtDossard.Text);
+                        Coureur.Nom = txtNom.Text;
+                        Coureur.Prenom = txtPrenom.Text;
+                        Coureur.Ville = txtVille.Text;
+                        Coureur.Province = (Province)Enum.Parse(typeof(Province), cboProvince.Text);
+                        Coureur.Categorie = (Categorie)Enum.Parse(typeof(Categorie), cboCategorie.Text);
+                        Coureur.Temps = TimeSpan.Parse(tspTemps.Text);
+                        Coureur.Abandon = checkAbandon.IsChecked.Value;
+                        DialogResult = true;
+                    }
                     break;
                 case EtatFormulaire.Supprimer:
                     MessageBoxResult messageResult = MessageBox.Show("Desirez-vous supprimer le coureur?", "Suppression d'un coureur", MessageBoxButton.YesNo, MessageBoxImage.Question,MessageBoxResult.No);
@@ -124,27 +130,23 @@ namespace _420_14B_FX_A24_TP2
             }
             if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Trim().Length < Coureur.NOM_NB_CARC_MIN)
             {
-                message += $"Le nom doit contenir au moins {Coureur.NOM_NB_CARC_MIN} caractères\n";
+                message += $"Vous devez saisir le nom ({Coureur.NOM_NB_CARC_MIN} caractères minimum)\n";
             }
             if (string.IsNullOrWhiteSpace(txtPrenom.Text) || txtPrenom.Text.Trim().Length < Coureur.PRENOM_NB_CARC_MIN)
             {
-                message += $"Le prénom doit contenir au moins {Coureur.PRENOM_NB_CARC_MIN} caractères\n";
+                message += $"Vous devez saisir le prénom ({Coureur.PRENOM_NB_CARC_MIN} caractères minimum)\n";
             }
             if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Trim().Length < Coureur.VILLE_NB_CARC_MIN)
             {
-                message += $"La ville doit contenir au moins {Coureur.VILLE_NB_CARC_MIN} caractères\n";
+                message += $"Vous devez saisir la ville ({Coureur.VILLE_NB_CARC_MIN} caractères minimum)\n";
             }
             if (string.IsNullOrWhiteSpace(cboProvince.Text))
             {
-                message += "Vous devez choisir une province\n";
+                message += "Vous devez sélectionner une province\n";
             }
             if (string.IsNullOrWhiteSpace(cboCategorie.Text))
             {
-                message += "Vous devez choisir une catégorie\n";
-            }
-            if (string.IsNullOrWhiteSpace(tspTemps.Text) || !TimeSpan.TryParse(tspTemps.Text, out _))
-            {
-                message += "Vous devez entrer un temps valide\n";
+                message += "Vous devez sélectionner une catégorie\n";
             }
 
             if (message.Length > 0)

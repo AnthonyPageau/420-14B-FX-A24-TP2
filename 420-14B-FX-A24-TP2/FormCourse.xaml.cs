@@ -120,17 +120,17 @@ namespace _420_14B_FX_A24_TP2
             string message = "";
 
             if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Trim().Length < Course.NOM_NB_CAR_MIN)
-                message += $"Le nom de la course doit contenir au moins {Course.NOM_NB_CAR_MIN} caractères\n";
+                message += $"Le nom de la course doit contenir au minimum {Course.NOM_NB_CAR_MIN} caractères\n";
             if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Trim().Length < Course.VILLE_NB_CAR_MIN)
-                message += $"La ville de la course doit contenir au moins {Course.VILLE_NB_CAR_MIN} caractères\n";
+                message += $"Le nom de la ville doit contenir au minimum {Course.VILLE_NB_CAR_MIN} caractères\n";
             if (string.IsNullOrWhiteSpace(cBoxProvince.Text))
-                message += "Vous devez choisir une province\n";
+                message += "Vous devez sélectionner une province\n";
             if (dtpDate.SelectedDate == null)
-                message += "Vous devez choisir une date pour la course\n";
+                message += "Vous devez sélectionner une date pour la course\n";
             if (string.IsNullOrWhiteSpace(cBoxType.Text))
-                message += "Vous devez choisir un type de course\n";
-            if (!(uint.TryParse(txtDistance.Text, out uint a) && a > Course.DISTANCE_VAL_MIN))
-                message += $"La distance doit être plus grande que {Course.DISTANCE_VAL_MIN}";
+                message += "Vous devez sélectionner le type de course\n";
+            if (!(uint.TryParse(txtDistance.Text, out uint a) && a >= Course.DISTANCE_VAL_MIN))
+                message += $"La distance doit être plus grande ou égale que {Course.DISTANCE_VAL_MIN}";
 
             if (message.Length > 0)
             {
@@ -210,7 +210,8 @@ namespace _420_14B_FX_A24_TP2
             FormCoureur frmCoureur = new FormCoureur();
             if (frmCoureur.ShowDialog() == true)
             {
-
+                Course.AjouterCoureur(frmCoureur.Coureur);
+                AfficherListeCoureur();
                 MessageBox.Show("Le coureur a bien été ajouté");
             }
         }
@@ -251,9 +252,10 @@ namespace _420_14B_FX_A24_TP2
             if (lstCoureurs.SelectedItem != null)
             {
                 Coureur coureur = lstCoureurs.SelectedItem as Coureur;
-                FormCoureur frmCourse = new FormCoureur(EtatFormulaire.Supprimer, coureur);
-                if (frmCourse.ShowDialog() == true)
+                FormCoureur frmCoureur = new FormCoureur(EtatFormulaire.Supprimer, coureur);
+                if (frmCoureur.ShowDialog() == true)
                 {
+                    Course.SupprimerCoureur(frmCoureur.Coureur);
                     AfficherListeCoureur();
                     MessageBox.Show("La course a bien été supprimé");
                 }
