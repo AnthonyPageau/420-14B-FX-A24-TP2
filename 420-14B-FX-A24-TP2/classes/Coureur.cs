@@ -30,7 +30,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         private string _prenom;
 
-     
+
         /// <summary>
         /// Catégorie d'âge du coureur
         /// </summary>
@@ -57,14 +57,14 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         private ushort _rang;
 
-       
+
         /// <summary>
         /// Indicateur d'abandon de la course
         /// </summary>
         private bool _abandon;
 
 
-       
+
 
         /// <summary>
         ///Obtien ou modifie le numéro du dossard.
@@ -74,13 +74,13 @@ namespace _420_14B_FX_A24_TP2.classes
         public ushort Dossard
         {
             get { return _dossard; }
-            set 
+            set
             {
                 if (value < DOSSARD_VAL_MIN)
                     throw new ArgumentOutOfRangeException(nameof(Nom), $"Le dossard doit avoir une valeur superieur à {DOSSARD_VAL_MIN}"); ;
 
-                _dossard = value; 
-            
+                _dossard = value;
+
             }
         }
 
@@ -93,13 +93,13 @@ namespace _420_14B_FX_A24_TP2.classes
         public string Nom
         {
             get { return _nom; }
-            set 
+            set
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Nom), "Le nom ne doit pas être vide");
                 if (value.Trim().Length < NOM_NB_CARC_MIN)
-                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir {NOM_NB_CARC_MIN} caractères");;
-                _nom = value.Trim(); 
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir {NOM_NB_CARC_MIN} caractères"); ;
+                _nom = value.Trim();
             }
         }
 
@@ -115,7 +115,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public string Prenom
         {
             get { return _prenom; }
-            set 
+            set
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Prenom), "Le prénom ne doit pas être vide");
@@ -123,7 +123,7 @@ namespace _420_14B_FX_A24_TP2.classes
                     throw new ArgumentOutOfRangeException(nameof(Prenom), $"Le prénom doit contenir {PRENOM_NB_CARC_MIN} caractères"); ;
 
 
-                _prenom = value.Trim(); 
+                _prenom = value.Trim();
             }
         }
 
@@ -136,11 +136,12 @@ namespace _420_14B_FX_A24_TP2.classes
         public Categorie Categorie
         {
             get { return _categorie; }
-            set 
+            set
             {
-               
+                if (!Enum.IsDefined(typeof(Categorie), value))
+                    throw new ArgumentOutOfRangeException(nameof(Province), "La catégorie ne fait pas partie de celles disponible");
 
-                _categorie = value; 
+                _categorie = value;
             }
         }
 
@@ -153,14 +154,14 @@ namespace _420_14B_FX_A24_TP2.classes
         public string Ville
         {
             get { return _ville; }
-            set 
+            set
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Ville), "Le nom de la ville ne doit pas être vide");
                 if (value.Trim().Length < VILLE_NB_CARC_MIN)
                     throw new ArgumentOutOfRangeException(nameof(Ville), $"Le nom de la ville doit contenir {VILLE_NB_CARC_MIN} caractères");
 
-                _ville = value.Trim(); 
+                _ville = value.Trim();
             }
         }
 
@@ -172,10 +173,11 @@ namespace _420_14B_FX_A24_TP2.classes
         public Province Province
         {
             get { return _province; }
-            set 
+            set
             {
-
-                _province = value; 
+                if(!Enum.IsDefined(typeof(Province), value))
+                    throw new ArgumentOutOfRangeException(nameof(Province), "La province ne fait pas partie de celles disponible");
+                _province = value;
             }
         }
 
@@ -187,7 +189,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public TimeSpan Temps
         {
             get { return _temps; }
-            set  { _temps = value; }
+            set { _temps = value; }
         }
         /// <summary>
         /// Obtient ou défini le rang du coureur
@@ -209,7 +211,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set { _abandon = value; }
         }
 
- 
+
 
         /// <summary>
         /// Permet de construire un objet Coureur
@@ -222,10 +224,10 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="province">Province du coureur</param>
         /// <param name="temps">Temps de course du coureur</param>
         /// <param name="abandon">Indicateur d'abandon de la course. Faux par défaut</param>
-     
+
         public Coureur(ushort dossard, string nom, string prenom, Categorie categorie, string ville, Province province, TimeSpan temps, bool abandon = false)
         {
-           Dossard = dossard;
+            Dossard = dossard;
             Nom = nom;
             Prenom = prenom;
             Categorie = categorie;
@@ -243,7 +245,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public override string ToString()
         {
             string dossard = Dossard.ToString().PadRight(10);
-            string nomprenom = (Nom +',' + Prenom).PadRight(25);
+            string nomprenom = (Nom + ',' + Prenom).PadRight(25);
             string categorie = Categorie.ToString().PadRight(19);
             string temps = Temps.ToString().PadRight(12);
             string rang = Rang.ToString();
@@ -266,6 +268,20 @@ namespace _420_14B_FX_A24_TP2.classes
                 return resComp;
 
             return 0;
+        }
+
+        public static bool operator ==(Coureur coureur, Coureur other)
+        {
+            if (coureur is null)
+                return false;
+
+            return (coureur.Nom == other.Nom && coureur.Prenom == other.Prenom && coureur.Ville == other.Ville && coureur.Province == other.Province && coureur.Temps == other.Temps && coureur.Abandon == other.Abandon);
+            
+        }
+
+        public static bool operator !=(Coureur coureur, Coureur other)
+        {
+            return !(coureur == other);
         }
     }
 }
