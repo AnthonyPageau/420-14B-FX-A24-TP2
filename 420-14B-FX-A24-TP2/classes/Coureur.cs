@@ -245,10 +245,19 @@ namespace _420_14B_FX_A24_TP2.classes
         public override string ToString()
         {
             string dossard = Dossard.ToString().PadRight(10);
-            string nomprenom = (Nom + ',' + Prenom).PadRight(25);
-            string categorie = Categorie.ToString().PadRight(19);
-            string temps = Temps.ToString().PadRight(12);
-            string rang = Rang.ToString();
+            string nomprenom = (Nom + ',' + Prenom).ToUpper().PadRight(25);
+            string categorie = Categorie.GetDescription().ToString().PadRight(19);
+            string temps = "";
+            string rang = "";
+            if (Temps != TimeSpan.Zero)
+            {
+                temps = Temps.ToString().PadRight(12);
+
+                //rang = indexOf(coureur);
+            }
+            
+            
+            
 
             return $"{dossard}{nomprenom}{categorie}{temps}{rang}";
         }

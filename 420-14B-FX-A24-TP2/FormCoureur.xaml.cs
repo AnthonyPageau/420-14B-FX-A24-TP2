@@ -69,18 +69,20 @@ namespace _420_14B_FX_A24_TP2
         {
             tbTitre.Text = $"{Etat} un coureur";
             btnAjouter.Content = Etat;
-
+            ObtenirDescriptionProvince();
+            ObtenirDescriptionCategorie();
             if (Etat != EtatFormulaire.Ajouter && Coureur != null)
             {
+                txtDossard.IsEnabled = false;
                 txtDossard.Text = Coureur.Dossard.ToString();
                 txtNom.Text = Coureur.Nom;
                 txtPrenom.Text = Coureur.Prenom;
                 txtVille.Text = Coureur.Ville;
-                cboProvince.Text = Coureur.Province.ToString();
-                cboCategorie.Text = Coureur.Categorie.ToString();
+                cboProvince.Text = Coureur.Province.GetDescription().ToString();
+                cboCategorie.Text = Coureur.Categorie.GetDescription().ToString();
                 tspTemps.Text = Coureur.Temps.ToString();
                 //faire le check box si il a abbandonner
-                if (Etat == EtatFormulaire.Supprimer) 
+                if (Etat == EtatFormulaire.Supprimer)
                 {
                     txtDossard.IsEnabled = false;
                     txtNom.IsEnabled = false;
@@ -137,7 +139,7 @@ namespace _420_14B_FX_A24_TP2
                     }
                     break;
                 case EtatFormulaire.Supprimer:
-                    MessageBoxResult messageResult = MessageBox.Show("Desirez-vous supprimer le coureur?", "Suppression d'un coureur", MessageBoxButton.YesNo, MessageBoxImage.Question,MessageBoxResult.No);
+                    MessageBoxResult messageResult = MessageBox.Show("Desirez-vous supprimer le coureur?", "Suppression d'un coureur", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
                     if (messageResult == MessageBoxResult.Yes)
                         DialogResult = true;
                     else
@@ -196,5 +198,29 @@ namespace _420_14B_FX_A24_TP2
         {
             DialogResult = false;
         }
+
+        /// <summary>
+        /// Permet d'obtenir la description des provinces et de les ajouter dans le combobox
+        /// </summary>
+        private void ObtenirDescriptionProvince()
+        {
+            foreach (Province province in Enum.GetValues(typeof(Province)))
+            {
+                cboProvince.Items.Add(UtilEnum.GetDescription(province));
+            }
+        }
+
+        /// <summary>
+        /// Permet d'obtenir la description des catégories et de les ajouter dans le combobox
+        /// </summary>
+        private void ObtenirDescriptionCategorie()
+        {
+            foreach (Categorie categorie in Enum.GetValues(typeof(Categorie)))
+            {
+                cboCategorie.Items.Add(UtilEnum.GetDescription(categorie));
+            }
+        }
+
+
     }
 }

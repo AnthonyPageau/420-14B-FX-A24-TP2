@@ -296,7 +296,7 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             string nom = Nom.PadRight(40);
             string ville = Ville.PadRight(25);
-            string province = Province.ToString().PadRight(26);
+            string province = Province.GetDescription().ToString().PadRight(26);
             string date = Date.ToString();
 
             return $"{nom}{ville}{province}{date}";
@@ -357,6 +357,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
             return string.Compare(Nom, other.Nom, CultureInfo.CurrentCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace);
         }
+
 
         /// <summary>
         /// Vérifie que le coureur existe déjà pas avant de l'ajouter

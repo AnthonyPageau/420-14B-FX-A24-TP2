@@ -28,19 +28,6 @@
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <Label Width="70">Province</Label>
                             <ComboBox x:Name="cBoxProvince" Width="170">
-                                <ComboBoxItem Content="Alberta"></ComboBoxItem>
-                                <ComboBoxItem Content="ColombieBritannique"></ComboBoxItem>
-                                <ComboBoxItem Content="IlePrinceEdouard"></ComboBoxItem>
-                                <ComboBoxItem Content="Manitoba"></ComboBoxItem>
-                                <ComboBoxItem Content="NouveauBrunswick"></ComboBoxItem>
-                                <ComboBoxItem Content="NouvelleEcosse"></ComboBoxItem>
-                                <ComboBoxItem Content="Nunavut"></ComboBoxItem>
-                                <ComboBoxItem Content="Ontario"></ComboBoxItem>
-                                <ComboBoxItem Content="Quebec"></ComboBoxItem>
-                                <ComboBoxItem Content="Saskatchewan"></ComboBoxItem>
-                                <ComboBoxItem Content="TerreNeuveLabrador"></ComboBoxItem>
-                                <ComboBoxItem Content="TerritoiresNordOuest"></ComboBoxItem>
-                                <ComboBoxItem Content="Yukon"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5">
@@ -50,9 +37,6 @@
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <Label Width="70">Type</Label>
                             <ComboBox x:Name="cBoxType" Width="170">
-                                <ComboBoxItem Content="Sentier"></ComboBoxItem>
-                                <ComboBoxItem Content="Route"></ComboBoxItem>
-                                <ComboBoxItem Content="Piste"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5">
