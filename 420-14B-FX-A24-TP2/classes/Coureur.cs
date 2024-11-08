@@ -239,7 +239,7 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
         /// <summary>
-        /// 
+        /// permet l'affichage des informations du coureur dans la liste des coureurs
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -253,7 +253,11 @@ namespace _420_14B_FX_A24_TP2.classes
             return $"{dossard}{nomprenom}{categorie}{temps}{rang}";
         }
 
-
+        /// <summary>
+        /// surcharge d'operateur compareTo
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>Retourne 1 si le coureur a abandonner ou est a 0 comme temps</returns>
         public int CompareTo(Coureur? other)
         {
             if (other is null || Abandon || Temps == TimeSpan.Zero)
@@ -270,6 +274,13 @@ namespace _420_14B_FX_A24_TP2.classes
             return 0;
         }
 
+
+        /// <summary>
+        /// surcharge d'operateur ==
+        /// </summary>
+        /// <param name="coureur"></param>
+        /// <param name="other"></param>
+        /// <returns> Retourne si deux coureur sont identique</returns>
         public static bool operator ==(Coureur coureur, Coureur other)
         {
             if (other is null)
@@ -279,6 +290,12 @@ namespace _420_14B_FX_A24_TP2.classes
             
         }
 
+        /// <summary>
+        /// permet de comparer deux coureurs sans comparer le dossard
+        /// </summary>
+        /// <param name="coureur"></param>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public static bool operator !=(Coureur coureur, Coureur other)
         {
             return !(coureur == other);
