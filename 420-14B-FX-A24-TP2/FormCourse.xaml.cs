@@ -65,7 +65,8 @@ namespace _420_14B_FX_A24_TP2
         {
             txtTitre.Text = $"{Etat} d'une course";
             btnAjouter.Content = Etat;
-
+            ObtenirDescriptionProvince();
+            ObtenirDescriptionTypeCourse();
             if (Course != null)
             {
                 txtNom.Text = Course.Nom;
@@ -161,6 +162,7 @@ namespace _420_14B_FX_A24_TP2
                             (Province)Enum.Parse(typeof(Province), cBoxProvince.Text),
                             (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text),
                             ushort.Parse(txtDistance.Text)
+                            
                             );
                         DialogResult = true;
                     }
@@ -257,6 +259,28 @@ namespace _420_14B_FX_A24_TP2
                     AfficherListeCoureur();
                     MessageBox.Show("La course a bien été supprimé");
                 }
+            }
+        }
+
+        /// <summary>
+        /// Permet d'obtenir la description des provinces et de les ajouter dans le combobox
+        /// </summary>
+        private void ObtenirDescriptionProvince()
+        {
+            foreach (Province province in Enum.GetValues(typeof(Province)))
+            {
+                cBoxProvince.Items.Add(UtilEnum.GetDescription(province));
+            }
+        }
+
+        /// <summary>
+        /// Permet d'obtenir la description des types de course et de les ajouter dans le combobox
+        /// </summary>
+        private void ObtenirDescriptionTypeCourse()
+        {
+            foreach (TypeCourse typeCourse in Enum.GetValues(typeof(TypeCourse)))
+            {
+                cBoxType.Items.Add(UtilEnum.GetDescription(typeCourse));
             }
         }
     }

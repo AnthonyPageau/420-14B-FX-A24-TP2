@@ -28,34 +28,11 @@
         <StackPanel Orientation="Horizontal">
             <Label Width="80">Province</Label>
             <ComboBox x:Name="cboProvince" Width="210">
-                <ComboBoxItem Content="Alberta"></ComboBoxItem>
-                <ComboBoxItem Content="ColombieBritannique"></ComboBoxItem>
-                <ComboBoxItem Content="IlePrinceEdouard"></ComboBoxItem>
-                <ComboBoxItem Content="Manitoba"></ComboBoxItem>
-                <ComboBoxItem Content="NouveauBrunswick"></ComboBoxItem>
-                <ComboBoxItem Content="NouvelleEcosse"></ComboBoxItem>
-                <ComboBoxItem Content="Nunavut"></ComboBoxItem>
-                <ComboBoxItem Content="Ontario"></ComboBoxItem>
-                <ComboBoxItem Content="Quebec"></ComboBoxItem>
-                <ComboBoxItem Content="Saskatchewan"></ComboBoxItem>
-                <ComboBoxItem Content="TerreNeuveLabrador"></ComboBoxItem>
-                <ComboBoxItem Content="TerritoiresNordOuest"></ComboBoxItem>
-                <ComboBoxItem Content="Yukon"></ComboBoxItem>
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Width="80">Catégorie</Label>
             <ComboBox x:Name="cboCategorie" Width="210">
-                <ComboBoxItem Content="M2029"></ComboBoxItem>
-                <ComboBoxItem Content="M3039"></ComboBoxItem>
-                <ComboBoxItem Content="M4049"></ComboBoxItem>
-                <ComboBoxItem Content="M5059"></ComboBoxItem>
-                <ComboBoxItem Content="M6069"></ComboBoxItem>
-                <ComboBoxItem Content="F2029"></ComboBoxItem>
-                <ComboBoxItem Content="F3039"></ComboBoxItem>
-                <ComboBoxItem Content="F4049"></ComboBoxItem>
-                <ComboBoxItem Content="F5059"></ComboBoxItem>
-                <ComboBoxItem Content="F6069"></ComboBoxItem>
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">

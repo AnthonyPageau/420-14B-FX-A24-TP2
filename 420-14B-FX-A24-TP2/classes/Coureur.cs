@@ -245,10 +245,13 @@ namespace _420_14B_FX_A24_TP2.classes
         public override string ToString()
         {
             string dossard = Dossard.ToString().PadRight(10);
-            string nomprenom = (Nom + ',' + Prenom).PadRight(25);
+            string nomprenom = (Nom + ',' + Prenom).ToUpper().PadRight(25);
             string categorie = Categorie.ToString().PadRight(19);
-            string temps = Temps.ToString().PadRight(12);
-            string rang = Rang.ToString();
+           
+                string temps = Temps.ToString().PadRight(12);
+                string rang = Rang.ToString();
+            
+            
 
             return $"{dossard}{nomprenom}{categorie}{temps}{rang}";
         }
@@ -283,7 +286,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns> Retourne si deux coureur sont identique</returns>
         public static bool operator ==(Coureur coureur, Coureur other)
         {
-            if (coureur is null)
+            if (other is null)
                 return false;
 
             return (coureur.Nom == other.Nom && coureur.Prenom == other.Prenom && coureur.Ville == other.Ville && coureur.Province == other.Province && coureur.Temps == other.Temps && coureur.Abandon == other.Abandon);
