@@ -395,6 +395,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (!Coureurs.Contains(coureur))
                 throw new InvalidOperationException("Le coureur n'existe pas dans la liste des coureurs");
             Coureurs.Remove(coureur);
+            TrierCoureurs();
         }
     }
 }
