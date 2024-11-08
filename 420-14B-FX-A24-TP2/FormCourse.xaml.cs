@@ -58,7 +58,7 @@ namespace _420_14B_FX_A24_TP2
                 cBoxProvince.Text = Course.Province.ToString();
                 cBoxType.Text = Course.TypeCourse.ToString();
                 txtDistance.Text = Course.Distance.ToString();
-                txtNbrParticipant.Text = Course.Coureurs.Count.ToString();
+                txtNbrParticipant.Text = Course.NbParticipants.ToString();
                 txtTempsCourse.Text = Course.TempCourseMoyen.ToString();
 
                 foreach (Coureur coureur in Course.Coureurs)
@@ -97,9 +97,9 @@ namespace _420_14B_FX_A24_TP2
         {
             string message = "";
 
-            if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Trim().Length < 3)
+            if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Trim().Length < Course.NOM_NB_CAR_MIN)
                 message += $"Le nom de la course doit contenir au moins {Course.NOM_NB_CAR_MIN} caractères\n";
-            if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Trim().Length < 4)
+            if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Trim().Length < Course.VILLE_NB_CAR_MIN)
                 message += $"La ville de la course doit contenir au moins {Course.VILLE_NB_CAR_MIN} caractères\n";
             if (string.IsNullOrWhiteSpace(cBoxProvince.Text))
                 message += "Vous devez choisir une province\n";

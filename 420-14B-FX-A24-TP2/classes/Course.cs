@@ -70,8 +70,9 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             get { return _id; }
             set {
-                if (value != Guid.Empty)
-                    _id = value;
+                if (value == Guid.Empty)
+                    throw new ArgumentException(nameof(Id), $"L'identifiant ne peut pas être vide");
+                _id = value;
             }
         }
 
@@ -92,7 +93,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Nom), "Le nom ne doit pas être vide");
                 if (value.Trim().Length < NOM_NB_CAR_MIN)
-                    throw new ArgumentException(nameof(Nom), $"La ville doit contenir {NOM_NB_CAR_MIN} caractères");
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"La ville doit contenir {NOM_NB_CAR_MIN} caractères");
                 _nom = value.Trim().ToUpper(); 
             }
         }
@@ -123,7 +124,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Nom), "La ville ne doit pas être vide");
                 if (value.Trim().Length < VILLE_NB_CAR_MIN)
-                    throw new ArgumentException(nameof(Nom), $"La ville doit contenir {VILLE_NB_CAR_MIN} caractères");
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"La ville doit contenir {VILLE_NB_CAR_MIN} caractères");
                 _ville = value.Trim(); 
             }
         }
@@ -142,7 +143,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
                 if (!Enum.IsDefined(typeof(Province), value))
-                    throw new ArgumentException(nameof(Province), $"La province ne fait pas partie de celles disponibles");
+                    throw new ArgumentOutOfRangeException(nameof(Province), $"La province ne fait pas partie de celles disponibles");
                 _province = value;
             }
         }
@@ -159,7 +160,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
                 if (!Enum.IsDefined(typeof(TypeCourse), value))
-                    throw new ArgumentException(nameof(TypeCourse), $"Le type de course ne fait pas partie de ceux disponibles");
+                    throw new ArgumentOutOfRangeException(nameof(TypeCourse), $"Le type de course ne fait pas partie de ceux disponibles");
                 _typeCourse = value;
             }
         }
@@ -200,7 +201,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public int NbParticipants
         {
             get {
-                throw new NotImplementedException();
+                return Coureurs.Count;
             }
       
         }
@@ -334,6 +335,7 @@ namespace _420_14B_FX_A24_TP2.classes
                     throw new InvalidOperationException("Ce coureur existe déjà avec un autre numéro de dossard");
             }
             Coureurs.Add(coureur);
+            TrierCoureurs();
         }
 
         public void SupprimerCoureur(Coureur coureur)

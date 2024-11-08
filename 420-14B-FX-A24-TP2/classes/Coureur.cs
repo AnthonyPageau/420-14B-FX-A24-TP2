@@ -240,8 +240,11 @@ namespace _420_14B_FX_A24_TP2.classes
 
         public int CompareTo(Coureur? other)
         {
-            if (other is null)
+            if (other is null || Abandon)
                 return 1;
+
+            if (other.Abandon)
+                return -1;
 
             int resComp = Temps.CompareTo(other.Temps);
 
