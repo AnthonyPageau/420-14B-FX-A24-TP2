@@ -246,10 +246,16 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             string dossard = Dossard.ToString().PadRight(10);
             string nomprenom = (Nom + ',' + Prenom).ToUpper().PadRight(25);
-            string categorie = Categorie.ToString().PadRight(19);
-           
-                string temps = Temps.ToString().PadRight(12);
-                string rang = Rang.ToString();
+            string categorie = Categorie.GetDescription().ToString().PadRight(19);
+            string temps = "";
+            string rang = "";
+            if (Temps != TimeSpan.Zero)
+            {
+                temps = Temps.ToString().PadRight(12);
+
+                //rang = indexOf(coureur);
+            }
+            
             
             
 

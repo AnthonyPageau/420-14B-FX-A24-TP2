@@ -73,12 +73,13 @@ namespace _420_14B_FX_A24_TP2
             ObtenirDescriptionCategorie();
             if (Etat != EtatFormulaire.Ajouter && Coureur != null)
             {
+                txtDossard.IsEnabled = false;
                 txtDossard.Text = Coureur.Dossard.ToString();
                 txtNom.Text = Coureur.Nom;
                 txtPrenom.Text = Coureur.Prenom;
                 txtVille.Text = Coureur.Ville;
-                cboProvince.Text = Coureur.Province.ToString();
-                cboCategorie.Text = Coureur.Categorie.ToString();
+                cboProvince.Text = Coureur.Province.GetDescription().ToString();
+                cboCategorie.Text = Coureur.Categorie.GetDescription().ToString();
                 tspTemps.Text = Coureur.Temps.ToString();
                 //faire le check box si il a abbandonner
                 if (Etat == EtatFormulaire.Supprimer)

@@ -72,7 +72,7 @@ namespace _420_14B_FX_A24_TP2
                 txtNom.Text = Course.Nom;
                 txtVille.Text = Course.Ville;
                 dtpDate.Text = Course.Date.ToString();
-                cBoxProvince.Text = Course.Province.ToString();
+                cBoxProvince.Text = Course.Province.GetDescription().ToString();
                 cBoxType.Text = Course.TypeCourse.ToString();
                 txtDistance.Text = Course.Distance.ToString();
                 txtNbrParticipant.Text = Course.NbParticipants.ToString();
