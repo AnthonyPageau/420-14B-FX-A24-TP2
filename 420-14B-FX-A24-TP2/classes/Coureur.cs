@@ -11,8 +11,8 @@ namespace _420_14B_FX_A24_TP2.classes
     public class Coureur : IComparable<Coureur>
     {
         public const int DOSSARD_VAL_MIN = 1;
-        public const int NOM_NB_CARC_MIN = 4;
-        public const int PRENOM_NB_CARC_MIN = 4;
+        public const int NOM_NB_CARC_MIN = 3;
+        public const int PRENOM_NB_CARC_MIN = 3;
         public const int VILLE_NB_CARC_MIN = 4;
 
         /// <summary>
@@ -254,10 +254,10 @@ namespace _420_14B_FX_A24_TP2.classes
 
         public int CompareTo(Coureur? other)
         {
-            if (other is null || Abandon)
+            if (other is null || Abandon || Temps == TimeSpan.Zero)
                 return 1;
 
-            if (other.Abandon)
+            if (other.Abandon || other.Temps == TimeSpan.Zero)
                 return -1;
 
             int resComp = Temps.CompareTo(other.Temps);

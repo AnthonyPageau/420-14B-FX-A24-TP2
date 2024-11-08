@@ -265,7 +265,7 @@ namespace _420_14B_FX_A24_TP2.classes
             TimeSpan tempsTotale = TimeSpan.Zero;
             foreach(Coureur c in Coureurs)
             {
-                if (!c.Abandon)
+                if (!c.Abandon && c.Temps != TimeSpan.Zero)
                 {
                     compteur++;
                     tempsTotale += c.Temps;
