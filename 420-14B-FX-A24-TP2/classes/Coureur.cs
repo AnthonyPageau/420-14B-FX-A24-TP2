@@ -138,7 +138,8 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _categorie; }
             set
             {
-
+                if (!Enum.IsDefined(typeof(Categorie), value))
+                    throw new ArgumentOutOfRangeException(nameof(Province), "La catégorie ne fait pas partie de celles disponible");
 
                 _categorie = value;
             }
@@ -174,7 +175,8 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _province; }
             set
             {
-
+                if(!Enum.IsDefined(typeof(Province), value))
+                    throw new ArgumentOutOfRangeException(nameof(Province), "La province ne fait pas partie de celles disponible");
                 _province = value;
             }
         }
