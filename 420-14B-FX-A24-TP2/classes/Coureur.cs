@@ -3,13 +3,18 @@ using _420_14B_FX_A24_TP2.enums;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
+
     /// <summary>
     /// Classe représentant un coureur
     /// </summary>
     public class Coureur
     {
-        public const int DOSSARD_VAL_MIN = 1;
-       
+        public const byte DOSSARD_VAL_MIN = 1;
+        public const byte NOM_NB_CARC_MIN = 3;
+        public const byte PRENOM_NB_CARC_MIN = 3;
+        public const byte VILLE_NB_CARC_MIN = 4;
+
+
         /// <summary>
         /// Numéro du dossard
         /// </summary>
@@ -70,7 +75,10 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             get { return _dossard; }
             set 
-            {                
+            {
+                if (value < DOSSARD_VAL_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le dossard doit avoir une valeur superieur à {DOSSARD_VAL_MIN}"); ;
+
                 _dossard = value; 
             
             }
@@ -81,13 +89,16 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <value>Obtien ou modifie la valeur de l'attribut :  _nom.</value>
         /// <exception cref="System.ArgumentNullException">Lancée lorsque que le nom est nul ou n'a aucune valeur.</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">Lancée lors que le nom a moins de caractères que NOM_NB_CARC_MIN .</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Lancée lors que le nom a moins de caractères que NOM_COUREUR_NB_CARC_MIN .</exception>
         public string Nom
         {
             get { return _nom; }
             set 
             {
-
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException(nameof(Nom), "Le nom ne doit pas être vide");
+                if (value.Trim().Length < NOM_NB_CARC_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir {NOM_NB_CARC_MIN} caractères");;
                 _nom = value.Trim(); 
             }
         }
@@ -106,7 +117,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _prenom; }
             set 
             {
-                
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException(nameof(Prenom), "Le prénom ne doit pas être vide");
+                if (value.Trim().Length < PRENOM_NB_CARC_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Prenom), $"Le prénom doit contenir {PRENOM_NB_CARC_MIN} caractères"); ;
+
 
                 _prenom = value.Trim(); 
             }
@@ -140,7 +155,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set 
             {
-                
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException(nameof(Ville), "Le nom de la ville ne doit pas être vide");
+                if (value.Trim().Length < VILLE_NB_CARC_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Ville), $"Le nom de la ville doit contenir {VILLE_NB_CARC_MIN} caractères");
+
                 _ville = value.Trim(); 
             }
         }

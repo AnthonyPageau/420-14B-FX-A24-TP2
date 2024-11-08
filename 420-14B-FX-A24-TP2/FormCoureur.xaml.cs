@@ -112,8 +112,13 @@ namespace _420_14B_FX_A24_TP2
                         DialogResult = false;
                     break;
             }
+        }
 
+        private bool ValiderFormulaire()
+        {
+            string messageErreur = "";
 
+            return true;
         }
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
