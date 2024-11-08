@@ -21,23 +21,39 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class FormCourse : Window
     {
+        /// <summary>
+        /// Course sélectionnée
+        /// </summary>
         private Course _course;
 
+        /// <summary>
+        /// Obtient ou modife la course
+        /// </summary>
         public Course Course
         {
             get { return _course; }
             set { _course = value; }
         }
 
+        /// <summary>
+        /// Action désirée du formulaire (Ajouter, Modifier, Supprimer)
+        /// </summary>
         private EtatFormulaire _etat;
 
+        /// <summary>
+        /// Obtient ou modifie l'état du formulaire
+        /// </summary>
         public EtatFormulaire Etat
         {
             get { return _etat; }
             set { _etat = value; }
         }
 
-
+        /// <summary>
+        /// Permet de construre le formulaire FormCourse
+        /// </summary>
+        /// <param name="etat"></param>
+        /// <param name="course"></param>
         public FormCourse(EtatFormulaire etat = EtatFormulaire.Ajouter, Course course = null)
         {
             Etat = etat;
@@ -82,6 +98,9 @@ namespace _420_14B_FX_A24_TP2
             }
         }
 
+        /// <summary>
+        /// Affiche la liste des coureurs de la course
+        /// </summary>
         private void AfficherListeCoureur()
         {
             lstCoureurs.Items.Clear();
@@ -92,7 +111,10 @@ namespace _420_14B_FX_A24_TP2
          
         }      
 
-
+        /// <summary>
+        /// Affiche une message de validation si un des champs ne respecte pas leur validation
+        /// </summary>
+        /// <returns>Retourne true s'il y a aucune erreur, faux s'il y a des erreurs</returns>
         private bool ValiderFormulaire()
         {
             string message = "";
@@ -119,27 +141,31 @@ namespace _420_14B_FX_A24_TP2
             return true;
         }
 
-
-            private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Permet d'ajouter, supprimer ou modifier un course dépendamment de l'état du formulare
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            switch(Etat)
             {
-                switch(Etat)
-                {
-                    case EtatFormulaire.Ajouter:
-                        if (ValiderFormulaire())
-                        {
-                            Course = new Course(
-                                Guid.NewGuid(),
-                                txtNom.Text,
-                                DateOnly.FromDateTime(dtpDate.SelectedDate.Value),
-                                txtVille.Text,
-                                (Province)Enum.Parse(typeof(Province), cBoxProvince.Text),
-                                (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text),
-                                ushort.Parse(txtDistance.Text)
-                             );
-                            DialogResult = true;
-                        }
-                        break;
-                    case EtatFormulaire.Modifier:
+                case EtatFormulaire.Ajouter:
+                    if (ValiderFormulaire())
+                    {
+                        Course = new Course(
+                            Guid.NewGuid(),
+                            txtNom.Text,
+                            DateOnly.FromDateTime(dtpDate.SelectedDate.Value),
+                            txtVille.Text,
+                            (Province)Enum.Parse(typeof(Province), cBoxProvince.Text),
+                            (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text),
+                            ushort.Parse(txtDistance.Text)
+                            );
+                        DialogResult = true;
+                    }
+                    break;
+                case EtatFormulaire.Modifier:
                     if (ValiderFormulaire())
                         {
                             Course.Nom = txtNom.Text;
@@ -152,65 +178,86 @@ namespace _420_14B_FX_A24_TP2
                             DialogResult = true;
                         }
                     break;
-                    case EtatFormulaire.Supprimer:
-                        MessageBoxResult messageBoxResult = MessageBox.Show("Désirez-vous supprimer la course",
-                            "Suppression d'une course", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-                        if (messageBoxResult == MessageBoxResult.Yes)
-                            DialogResult = true;
-                        else
-                            DialogResult = false;
-                        break;
-                }
+                case EtatFormulaire.Supprimer:
+                    MessageBoxResult messageBoxResult = MessageBox.Show("Désirez-vous supprimer la course",
+                        "Suppression d'une course", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                    if (messageBoxResult == MessageBoxResult.Yes)
+                        DialogResult = true;
+                    else
+                        DialogResult = false;
+                    break;
             }
+        }
+        
 
-            private void btnAnnuler_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Ferme le formulaire FormCourse
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAnnuler_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        /// <summary>
+        /// Permet d'ajouter un coureur à la course
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAjouterCoureur_Click(object sender, RoutedEventArgs e)
+        {
+            FormCoureur frmCoureur = new FormCoureur();
+            if (frmCoureur.ShowDialog() == true)
             {
-                DialogResult = false;
+
+                MessageBox.Show("Le coureur a bien été ajouté");
             }
+        }
 
-            private void btnAjouterCoureur_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Permet de modifier un coureur de la course
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstCoureurs.SelectedItem != null)
             {
-                FormCoureur frmCoureur = new FormCoureur();
+                Coureur coureur = lstCoureurs.SelectedItem as Coureur;
+
+                FormCoureur frmCoureur = new FormCoureur(EtatFormulaire.Modifier, coureur);
+
                 if (frmCoureur.ShowDialog() == true)
                 {
-
-                    MessageBox.Show("Le coureur a bien été ajouté");
+                    AfficherListeCoureur();
+                    MessageBox.Show("Le coureur a bien été modifié");
                 }
+
             }
-
-            private void btnModifier_Click(object sender, RoutedEventArgs e)
+            else
             {
-                if (lstCoureurs.SelectedItem != null)
-                {
-                    Coureur coureur = lstCoureurs.SelectedItem as Coureur;
-
-                    FormCoureur frmCoureur = new FormCoureur(EtatFormulaire.Modifier, coureur);
-
-                    if (frmCoureur.ShowDialog() == true)
-                    {
-                        AfficherListeCoureur();
-                        MessageBox.Show("Le coureur a bien été modifié");
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Vous devez selectionner un coureur");
-                }
+                MessageBox.Show("Vous devez selectionner un coureur");
             }
+        }
 
-            private void btnSupprimer_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Permet de supprimer un coureur de la course
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstCoureurs.SelectedItem != null)
             {
-                if (lstCoureurs.SelectedItem != null)
+                Coureur coureur = lstCoureurs.SelectedItem as Coureur;
+                FormCoureur frmCourse = new FormCoureur(EtatFormulaire.Supprimer, coureur);
+                if (frmCourse.ShowDialog() == true)
                 {
-                    Coureur coureur = lstCoureurs.SelectedItem as Coureur;
-                    FormCoureur frmCourse = new FormCoureur(EtatFormulaire.Supprimer, coureur);
-                    if (frmCourse.ShowDialog() == true)
-                    {
-                        AfficherListeCoureur();
-                        MessageBox.Show("La course a bien été supprimé");
-                    }
+                    AfficherListeCoureur();
+                    MessageBox.Show("La course a bien été supprimé");
                 }
             }
         }
     }
+}

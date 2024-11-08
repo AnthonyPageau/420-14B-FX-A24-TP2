@@ -78,7 +78,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
 
         /// <summary>
-        ///Obtien ou modifie le nom de la course.
+        /// Obtient ou modifie le nom de la course.
         /// </summary>
         /// <value>Obtien ou modifie la valeur de l'attribut :  _nom.</value>
         /// <exception cref="System.ArgumentNullException">Lancée lorsque que le nom est nul ou n'a aucune valeur.</exception>
@@ -240,11 +240,20 @@ namespace _420_14B_FX_A24_TP2.classes
             Coureurs = new List<Coureur>();
         }
 
+        /// <summary>
+        /// Permet de trier les coureur du plus petit temps au plus grand, les coureurs qui ont abandonné sont mis à la fin
+        /// </summary>
         public void TrierCoureurs()
         {
             Coureurs.Sort();
         }
 
+        /// <summary>
+        /// Permet de vérifier si un coureur dans la course existe avec le numéro de dossard
+        /// </summary>
+        /// <param name="noDossard"></param>
+        /// <returns>Retourne un coureur si le numéro de dossard et déjà utilisé, retourne null s'il n'est pas encore utilisé</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
         {
             if (noDossard < Coureur.DOSSARD_VAL_MIN)
@@ -259,6 +268,10 @@ namespace _420_14B_FX_A24_TP2.classes
             return null;
         }
 
+        /// <summary>
+        /// Permet de calculer la moyenne du temps de course des coureurs
+        /// </summary>
+        /// <returns>Le temps moyen de course des coureurs</returns>
         private TimeSpan CalculerTempsCourseMoyen()
         {
             int compteur = 0;
@@ -275,6 +288,10 @@ namespace _420_14B_FX_A24_TP2.classes
             return compteur == 0 ? TimeSpan.Zero : tempsTotale / compteur;    
         }
 
+        /// <summary>
+        /// Surcharge de l'opérateur ToString()
+        /// </summary>
+        /// <returns>Retounre le nom, la ville, la province et la date de la course</returns>
         public override string ToString()
         {
             string nom = Nom.PadRight(40);
@@ -285,6 +302,12 @@ namespace _420_14B_FX_A24_TP2.classes
             return $"{nom}{ville}{province}{date}";
         }
 
+        /// <summary>
+        /// Surcharge de l'opérateur ==
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>Vérifie le Nom, Date, Ville, Province, TypeCourse et Distance</returns>
         public static bool operator == (Course a, Course b)
         {
             if (Object.ReferenceEquals(a, b)) return true;
@@ -294,11 +317,22 @@ namespace _420_14B_FX_A24_TP2.classes
             return (a.Nom == b.Nom && a.Date == b.Date && a.Ville.ToUpper() == b.Ville.ToUpper() && a.Province == b.Province && a.TypeCourse == b.TypeCourse && a.Distance == b.Distance);
         }
 
+        /// <summary>
+        /// Surcharge de l'opérateur !=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>Vérifie le Nom, Date, Ville, Province, TypeCourse et Distance</returns>
         public static bool operator != (Course a, Course b)
         {
             return !(a == b);
         }
 
+        /// <summary>
+        /// Surcharge de l'opérateur Equals
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object? obj)
         {
             if (obj is not Course) return false;
@@ -306,6 +340,11 @@ namespace _420_14B_FX_A24_TP2.classes
             return this == (Course)obj;
         }
 
+        /// <summary>
+        /// Compare deux courses par la date décroissant et le nom de la course
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>Retourne 1 si la course est moins récente</returns>
         public int CompareTo(Course? other)
         {
             if (other is null)

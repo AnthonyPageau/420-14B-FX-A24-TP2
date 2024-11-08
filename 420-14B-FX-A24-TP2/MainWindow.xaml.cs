@@ -36,6 +36,9 @@ namespace _420_14B_FX_A24_TP2
             }
         }
 
+        /// <summary>
+        /// Affiche la liste des courses
+        /// </summary>
         private void AfficherListeCourses()
         {
            lstCourses.Items.Clear();
@@ -45,6 +48,11 @@ namespace _420_14B_FX_A24_TP2
             }
         }
 
+        /// <summary>
+        /// Permet d'ajouter une course
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNouveau_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -64,6 +72,11 @@ namespace _420_14B_FX_A24_TP2
             }
         }
 
+        /// <summary>
+        /// Permet de modifier une course
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
             if (lstCourses.SelectedItem != null)
@@ -79,6 +92,11 @@ namespace _420_14B_FX_A24_TP2
             }
         }
 
+        /// <summary>
+        /// Permet de supprimer une course
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
             if (lstCourses.SelectedItem != null)

@@ -1,4 +1,5 @@
-﻿using _420_14B_FX_A24_TP2.enums;
+﻿
+using _420_14B_FX_A24_TP2.enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,42 @@ namespace _420_14B_FX_A24_TP2.classes
 {
     public class GestionCourse
     {
+
+		/// <summary>
+		/// Liste des courses
+		/// </summary>
 		private List<Course> _courses;
 
+
+		/// <summary>
+		/// Obtient ou définit la liste des courses
+		/// </summary>
 		public List<Course> Courses
 		{
 			get { return _courses; }
 			set { _courses = value; }
 		}
 
+
+		/// <summary>
+		/// Permet de construire un objet de type Course
+		/// </summary>
+		/// <param name="cheminFichierCourses"></param>
+		/// <param name="cheminFichierCoureurs"></param>
+		/// <remarks>Initialise une liste de courses vide</remarks>
 		public GestionCourse(string cheminFichierCourses, string cheminFichierCoureurs)
 		{
 			Courses = new List<Course>();
 			ChargerCourse(cheminFichierCourses, cheminFichierCoureurs);
 		}
 
+
+		/// <summary>
+		/// Permet de d'ajouter les courses dans la liste de course à partir du fichier csv
+		/// </summary>
+		/// <param name="cheminFichierCourses"></param>
+		/// <param name="cheminFichierCoureurs"></param>
+		/// <exception cref="ArgumentNullException"></exception>
         private void ChargerCourse(string cheminFichierCourses, string cheminFichierCoureurs)
 		{
             if (string.IsNullOrWhiteSpace(cheminFichierCourses))
@@ -50,6 +73,13 @@ namespace _420_14B_FX_A24_TP2.classes
             }
         }
 
+
+		/// <summary>
+		/// Permet d'ajouter les coureurs dans chaque courses de la liste de courses  à partir du fichier csv
+		/// </summary>
+		/// <param name="course"></param>
+		/// <param name="cheminFichierCoureurs"></param>
+		/// <exception cref="ArgumentNullException"></exception>
         private void ChargerCoureurs(Course course, string cheminFichierCoureurs)
 		{
             if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
@@ -79,7 +109,12 @@ namespace _420_14B_FX_A24_TP2.classes
 			}
         }
 
-
+		/// <summary>
+		/// Permet d'ajouter une course dans la liste de course
+		/// </summary>
+		/// <param name="course"></param>
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="InvalidOperationException"></exception>
         public void AjouterCourse(Course course)
 		{
 			if (course is null)
@@ -91,6 +126,13 @@ namespace _420_14B_FX_A24_TP2.classes
 			Courses.Sort();
 		}
 
+
+		/// <summary>
+		/// Permet de supprimer une couse de la liste de course
+		/// </summary>
+		/// <param name="course"></param>
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="InvalidOperationException"></exception>
 		public void SupprimerCourse(Course course)
 		{
             if (course is null)
@@ -103,6 +145,12 @@ namespace _420_14B_FX_A24_TP2.classes
 			Courses.Sort();
 		}
 
+
+		/// <summary>
+		/// Permet de vérifier si une course existe dans la liste de course
+		/// </summary>
+		/// <param name="course"></param>
+		/// <returns>Retourne vrai si la course existe et faut si elle n'existe pas</returns>
 		public bool Existe(Course course)
 		{
 			foreach (Course c in Courses)
@@ -113,6 +161,12 @@ namespace _420_14B_FX_A24_TP2.classes
 			return false;
 		}
 
+		/// <summary>
+		/// Permet d'enregistrer les courses et les coureurs dans leur fichier csv respectif
+		/// </summary>
+		/// <param name="cheminFichierCourses"></param>
+		/// <param name="cheminFichierCoureurs"></param>
+		/// <exception cref="ArgumentNullException"></exception>
         public void EnregistrerCourses(string cheminFichierCourses, string cheminFichierCoureurs)
 		{
 			if (string.IsNullOrWhiteSpace(cheminFichierCourses))
