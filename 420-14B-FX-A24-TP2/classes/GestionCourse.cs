@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
-    class GestionCourse
+    public class GestionCourse
     {
 		private List<Course> _courses;
 
@@ -17,10 +17,10 @@ namespace _420_14B_FX_A24_TP2.classes
 			set { _courses = value; }
 		}
 
-		public GestionCourse()
+		public GestionCourse(string cheminFichierCourses, string cheminFichierCoureurs)
 		{
 			Courses = new List<Course>();
-			ChargerCourse(MainWindow.CHEMIN_FICHIER_COURSES, MainWindow.CHEMIN_FICHIER_COUREURS);
+			ChargerCourse(cheminFichierCourses, cheminFichierCoureurs);
 		}
 
         private void ChargerCourse(string cheminFichierCourses, string cheminFichierCoureurs)
@@ -39,7 +39,7 @@ namespace _420_14B_FX_A24_TP2.classes
 				string nom = vectParametres[1];
 				string ville = vectParametres[2];
 				Province province = (Province)(Convert.ToInt32(vectParametres[3]));
-				DateOnly date = DateOnly.Parse(vectParametres[4]);
+                DateOnly date = DateOnly.Parse(vectParametres[4]);
 				TypeCourse type = (TypeCourse)(Convert.ToInt32(vectParametres[5]));
 				ushort distance = ushort.Parse(vectParametres[6]);
 
@@ -67,9 +67,9 @@ namespace _420_14B_FX_A24_TP2.classes
 					string nom = vectParametres[2];
 					string prenom = vectParametres[3];
 					string ville = vectParametres[4];
-					Province province = (Province)(Convert.ToInt32(vectParametres[5]));
-					Categorie categorie = (Categorie)(Convert.ToInt32(vectParametres[6]));
-					TimeSpan temps = TimeSpan.Parse(vectParametres[7]);
+					Province province = (Province)Enum.Parse(typeof(Province), vectParametres[5]);
+					Categorie categorie = (Categorie)Enum.Parse(typeof(Categorie), vectParametres[6]);
+                    TimeSpan temps = TimeSpan.Parse(vectParametres[7]);
 					bool abandon = Convert.ToBoolean(vectParametres[8]);
 
 					Coureur coureur = new Coureur(dossard, nom, prenom, categorie, ville, province, temps, abandon);
@@ -88,6 +88,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 throw new InvalidOperationException("Impossible d'ajouter la course, car elle existe déjà");
 
             Courses.Add(course);
+			Courses.Sort();
 		}
 
 		public void SupprimerCourse(Course course)
@@ -99,6 +100,7 @@ namespace _420_14B_FX_A24_TP2.classes
 				throw new InvalidOperationException("Impossible de supprimer la course, car elle n'exite pas dans la liste");
 
 			Courses.Remove(course);
+			Courses.Sort();
 		}
 
 		public bool Existe(Course course)
@@ -116,7 +118,7 @@ namespace _420_14B_FX_A24_TP2.classes
 			if (string.IsNullOrWhiteSpace(cheminFichierCourses))
 				throw new ArgumentNullException("Impossible de lire le fichier des courses");
 			if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
-				throw new ArgumentOutOfRangeException("Impossible de lire le fichier des coureurs");
+				throw new ArgumentNullException("Impossible de lire le fichier des coureurs");
 
             string courses = "";
 			string coureurs = "";

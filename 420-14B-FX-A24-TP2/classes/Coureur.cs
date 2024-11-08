@@ -1,5 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System.Globalization;
+using System.Windows.Controls;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -7,7 +9,7 @@ namespace _420_14B_FX_A24_TP2.classes
     /// <summary>
     /// Classe représentant un coureur
     /// </summary>
-    public class Coureur
+    public class Coureur : IComparable<Coureur>
     {
         public const byte DOSSARD_VAL_MIN = 1;
         public const byte NOM_NB_CARC_MIN = 3;
@@ -252,6 +254,17 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
 
+        public int CompareTo(Coureur? other)
+        {
+            if (other is null)
+                return 1;
 
+            int resComp = Temps.CompareTo(other.Temps);
+
+            if (resComp != 0)
+                return resComp;
+
+            return 0;
         }
+    }
 }
