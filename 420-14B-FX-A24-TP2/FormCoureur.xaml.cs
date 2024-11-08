@@ -116,8 +116,42 @@ namespace _420_14B_FX_A24_TP2
 
         private bool ValiderFormulaire()
         {
-            string messageErreur = "";
+            string message = "";
 
+            if (string.IsNullOrWhiteSpace(txtDossard.Text) || ushort.Parse(txtDossard.Text) < Coureur.DOSSARD_VAL_MIN)
+            {
+                message += $"Le dossard doit être un nombre supérieur ou égal à {Coureur.DOSSARD_VAL_MIN}\n";
+            }
+            if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Trim().Length < Coureur.NOM_NB_CARC_MIN)
+            {
+                message += $"Le nom doit contenir au moins {Coureur.NOM_NB_CARC_MIN} caractères\n";
+            }
+            if (string.IsNullOrWhiteSpace(txtPrenom.Text) || txtPrenom.Text.Trim().Length < Coureur.PRENOM_NB_CARC_MIN)
+            {
+                message += $"Le prénom doit contenir au moins {Coureur.PRENOM_NB_CARC_MIN} caractères\n";
+            }
+            if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Trim().Length < Coureur.VILLE_NB_CARC_MIN)
+            {
+                message += $"La ville doit contenir au moins {Coureur.VILLE_NB_CARC_MIN} caractères\n";
+            }
+            if (string.IsNullOrWhiteSpace(cboProvince.Text))
+            {
+                message += "Vous devez choisir une province\n";
+            }
+            if (string.IsNullOrWhiteSpace(cboCategorie.Text))
+            {
+                message += "Vous devez choisir une catégorie\n";
+            }
+            if (string.IsNullOrWhiteSpace(tspTemps.Text) || !TimeSpan.TryParse(tspTemps.Text, out _))
+            {
+                message += "Vous devez entrer un temps valide\n";
+            }
+
+            if (message.Length > 0)
+            {
+                MessageBox.Show(message, "Validation");
+                return false;
+            }
             return true;
         }
 
