@@ -331,7 +331,7 @@ namespace _420_14B_FX_A24_TP2.classes
             }
             foreach (Coureur c in Coureurs)
             {
-                if (c.Nom == coureur.Nom && c.Prenom == coureur.Prenom && c.Ville == coureur.Ville)
+                if (coureur == c)
                     throw new InvalidOperationException("Ce coureur existe déjà avec un autre numéro de dossard");
             }
             Coureurs.Add(coureur);
