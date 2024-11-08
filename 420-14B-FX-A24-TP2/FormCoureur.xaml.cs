@@ -20,21 +20,39 @@ namespace _420_14B_FX_A24_TP2
     public partial class FormCoureur : Window
     {
 
+        /// <summary>
+        ///coureur selectionner
+        /// </summary>
         private Coureur _coureur;
 
+        /// <summary>
+        /// obtient ou définit le coureur
+        /// </summary>
         public Coureur Coureur
         {
             get { return _coureur; }
             set { _coureur = value; }
         }
 
+        /// <summary>
+        /// Action désirée du formulaire (Ajouter, Modifier, Supprimer)
+        /// </summary>
         private EtatFormulaire _etat;
 
+        /// <summary>
+        /// obtient ou définit l'état du formulaire
+        /// </summary>
         public EtatFormulaire Etat
         {
             get { return _etat; }
             set { _etat = value; }
         }
+
+        /// <summary>
+        /// Permet de constuire le formulalaire formCoureur
+        /// </summary>
+        /// <param name="etat"></param>
+        /// <param name="coureur"></param>
         public FormCoureur(EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
         {
             Etat = etat;
@@ -42,7 +60,11 @@ namespace _420_14B_FX_A24_TP2
             InitializeComponent();
         }
 
-        
+        /// <summary>
+        /// permet de charge les information du formulaire et les affiche a son ouverture
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             tbTitre.Text = $"{Etat} un coureur";
@@ -72,7 +94,11 @@ namespace _420_14B_FX_A24_TP2
             }
         }
 
-
+        /// <summary>
+        /// Permet d'ajouter, supprimer ou modifier un course dépendamment de l'état du formulare
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
             switch (Etat)
@@ -114,6 +140,10 @@ namespace _420_14B_FX_A24_TP2
             }
         }
 
+        /// <summary>
+        /// Affiche une message de validation si un des champs ne respecte pas leur validation
+        /// </summary>
+        /// <returns></returns>
         private bool ValiderFormulaire()
         {
             string message = "";
@@ -155,6 +185,11 @@ namespace _420_14B_FX_A24_TP2
             return true;
         }
 
+        /// <summary>
+        /// permet de fermer le form si le bouton annuler est cliqué
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;

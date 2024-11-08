@@ -71,7 +71,7 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _id; }
             set {
                 if (value == Guid.Empty)
-                    throw new ArgumentException(nameof(Id), $"L'identifiant ne peut pas être vide");
+                    throw new ArgumentException(nameof(Id), "L'identifiant ne peut pas être vide");
                 _id = value;
             }
         }
@@ -143,7 +143,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
                 if (!Enum.IsDefined(typeof(Province), value))
-                    throw new ArgumentOutOfRangeException(nameof(Province), $"La province ne fait pas partie de celles disponibles");
+                    throw new ArgumentOutOfRangeException(nameof(Province), "La province ne fait pas partie de celles disponibles");
                 _province = value;
             }
         }
@@ -160,7 +160,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
                 if (!Enum.IsDefined(typeof(TypeCourse), value))
-                    throw new ArgumentOutOfRangeException(nameof(TypeCourse), $"Le type de course ne fait pas partie de ceux disponibles");
+                    throw new ArgumentOutOfRangeException(nameof(TypeCourse), "Le type de course ne fait pas partie de ceux disponibles");
                 _typeCourse = value;
             }
         }
@@ -358,7 +358,12 @@ namespace _420_14B_FX_A24_TP2.classes
             return string.Compare(Nom, other.Nom, CultureInfo.CurrentCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace);
         }
 
-        //Pas certain de la méthode pour la derniere exeption
+        /// <summary>
+        /// Vérifie que le coureur existe déjà pas avant de l'ajouter
+        /// </summary>
+        /// <param name="coureur"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public void AjouterCoureur(Coureur coureur)
         {
             if (coureur is null)
@@ -377,6 +382,12 @@ namespace _420_14B_FX_A24_TP2.classes
             TrierCoureurs();
         }
 
+        /// <summary>
+        /// Vérifie si le coureur existe avant de le supprimer
+        /// </summary>
+        /// <param name="coureur"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public void SupprimerCoureur(Coureur coureur)
         {
             if (coureur is null)
