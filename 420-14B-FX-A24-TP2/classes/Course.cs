@@ -1,5 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System;
 using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -398,5 +399,6 @@ namespace _420_14B_FX_A24_TP2.classes
             Coureurs.Remove(coureur);
             TrierCoureurs();
         }
+
     }
 }

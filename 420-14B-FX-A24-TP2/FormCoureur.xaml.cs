@@ -84,7 +84,6 @@ namespace _420_14B_FX_A24_TP2
                 //faire le check box si il a abbandonner
                 if (Etat == EtatFormulaire.Supprimer)
                 {
-                    txtDossard.IsEnabled = false;
                     txtNom.IsEnabled = false;
                     txtPrenom.IsEnabled = false;
                     txtVille.IsEnabled = false;
@@ -220,7 +219,5 @@ namespace _420_14B_FX_A24_TP2
                 cboCategorie.Items.Add(UtilEnum.GetDescription(categorie));
             }
         }
-
-
     }
 }

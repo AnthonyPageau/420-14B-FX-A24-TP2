@@ -252,21 +252,21 @@ namespace _420_14B_FX_A24_TP2.classes
             if (Temps != TimeSpan.Zero)
             {
                 temps = Temps.ToString().PadRight(12);
-
-                //rang = indexOf(coureur);
+                if (Temps != TimeSpan.Zero)
+                {
+                    temps = Temps.ToString().PadRight(12);
+                    //rang = .ToString();
+                }
+                
             }
-            
-            
-            
-
             return $"{dossard}{nomprenom}{categorie}{temps}{rang}";
         }
 
-        /// <summary>
-        /// surcharge d'operateur compareTo
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns>Retourne 1 si le coureur a abandonner ou est a 0 comme temps</returns>
+            /// <summary>
+            /// surcharge d'operateur compareTo
+            /// </summary>
+            /// <param name="other"></param>
+            /// <returns>Retourne 1 si le coureur a abandonner ou est a 0 comme temps</returns>
         public int CompareTo(Coureur? other)
         {
             if (other is null || Abandon || Temps == TimeSpan.Zero)
@@ -281,6 +281,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 return resComp;
 
             return 0;
+            
         }
 
 
