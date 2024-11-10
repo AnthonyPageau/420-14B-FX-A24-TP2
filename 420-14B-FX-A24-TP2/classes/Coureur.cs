@@ -255,7 +255,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 if (Temps != TimeSpan.Zero)
                 {
                     temps = Temps.ToString().PadRight(12);
-                    //rang = .ToString();
+                    rang = (Rang + 1).ToString();
                 }
                 
             }

@@ -247,6 +247,10 @@ namespace _420_14B_FX_A24_TP2.classes
         public void TrierCoureurs()
         {
             Coureurs.Sort();
+            foreach (Coureur coureur in Coureurs)
+            {
+                coureur.Rang = (ushort)Coureurs.IndexOf(coureur);
+            }
         }
 
         /// <summary>
