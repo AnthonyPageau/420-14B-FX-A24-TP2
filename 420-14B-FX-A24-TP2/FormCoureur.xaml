@@ -40,7 +40,7 @@
             <xctk:TimeSpanUpDown x:Name="tspTemps" Width="100" ShowDays="False" Minimum="0"></xctk:TimeSpanUpDown>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
-            <CheckBox x:Name="checkAbandon" Content="Abandon" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="checkAbandon" Content="Abandon" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" Checked="checkAbandon_Checked"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="80,0,0,0">
             <Button x:Name="btnAjouter" Width="100" Click="btnAjouter_Click">Ajouter</Button>

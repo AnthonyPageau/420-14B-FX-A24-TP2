@@ -69,8 +69,8 @@ namespace _420_14B_FX_A24_TP2
         {
             tbTitre.Text = $"{Etat} un coureur";
             btnAjouter.Content = Etat;
-            ObtenirDescriptionProvince();
-            ObtenirDescriptionCategorie();
+            //ObtenirDescriptionProvince();
+            //ObtenirDescriptionCategorie();
             if (Etat != EtatFormulaire.Ajouter && Coureur != null)
             {
                 txtDossard.IsEnabled = false;
@@ -78,6 +78,7 @@ namespace _420_14B_FX_A24_TP2
                 txtNom.Text = Coureur.Nom;
                 txtPrenom.Text = Coureur.Prenom;
                 txtVille.Text = Coureur.Ville;
+
                 cboProvince.Text = Coureur.Province.GetDescription().ToString();
                 cboCategorie.Text = Coureur.Categorie.GetDescription().ToString();
                 tspTemps.Text = Coureur.Temps.ToString();
@@ -203,9 +204,10 @@ namespace _420_14B_FX_A24_TP2
         /// </summary>
         private void ObtenirDescriptionProvince()
         {
-            foreach (Province province in Enum.GetValues(typeof(Province)))
+            string[] provinces = UtilEnum.GetAllDescriptions<Province>();
+            foreach (string province in provinces)
             {
-                cboProvince.Items.Add(UtilEnum.GetDescription(province));
+                cboProvince.Items.Add(province);
             }
         }
 
@@ -218,6 +220,16 @@ namespace _420_14B_FX_A24_TP2
             {
                 cboCategorie.Items.Add(UtilEnum.GetDescription(categorie));
             }
+        }
+
+        /// <summary>
+        /// Permet de mettre le temps à 0 si le coureur a abandonné
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkAbandon_Checked(object sender, RoutedEventArgs e)
+        {
+            tspTemps.Value = TimeSpan.Zero;
         }
     }
 }
