@@ -372,6 +372,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <exception cref="InvalidOperationException"></exception>
         public void AjouterCoureur(Coureur coureur)
         {
+
             if (coureur is null)
                 throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut être nul");
             foreach (Coureur c in Coureurs)

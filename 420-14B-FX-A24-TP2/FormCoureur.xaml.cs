@@ -69,11 +69,15 @@ namespace _420_14B_FX_A24_TP2
         {
             tbTitre.Text = $"{Etat} un coureur";
             btnAjouter.Content = Etat;
-            //ObtenirDescriptionProvince();
-            //ObtenirDescriptionCategorie();
+            tspTemps.IsEnabled = false;
+            checkAbandon.IsEnabled = false;
+            ObtenirDescriptionProvince();
+            ObtenirDescriptionCategorie();
             if (Etat != EtatFormulaire.Ajouter && Coureur != null)
             {
                 txtDossard.IsEnabled = false;
+                tspTemps.IsEnabled = true;
+                checkAbandon.IsEnabled = true;
                 txtDossard.Text = Coureur.Dossard.ToString();
                 txtNom.Text = Coureur.Nom;
                 txtPrenom.Text = Coureur.Prenom;
@@ -107,7 +111,6 @@ namespace _420_14B_FX_A24_TP2
             {
                 case EtatFormulaire.Ajouter:
                     if (ValiderFormulaire()) {
-
                         Coureur = new Coureur(
                         ushort.Parse(txtDossard.Text),
                         txtNom.Text,

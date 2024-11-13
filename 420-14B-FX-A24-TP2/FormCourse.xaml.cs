@@ -163,7 +163,7 @@ namespace _420_14B_FX_A24_TP2
                             txtNom.Text,
                             DateOnly.FromDateTime(dtpDate.SelectedDate.Value),
                             txtVille.Text,
-                            (Province)Enum.Parse(typeof(Province), cBoxProvince.Text),
+                            (Province)(cBoxProvince.SelectedIndex),
                             (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text),
                             ushort.Parse(txtDistance.Text)
                             
@@ -177,7 +177,7 @@ namespace _420_14B_FX_A24_TP2
                             Course.Nom = txtNom.Text;
                             Course.Date = DateOnly.FromDateTime(dtpDate.SelectedDate.Value);
                             Course.Ville = txtVille.Text;
-                            Course.Province = (Province)Enum.Parse(typeof(Province), cBoxProvince.Text);
+                            Course.Province = (Province)(cBoxProvince.SelectedIndex);
                             Course.TypeCourse = (TypeCourse)Enum.Parse(typeof(TypeCourse), cBoxType.Text);
                             Course.Distance = ushort.Parse(txtDistance.Text);
 
@@ -213,12 +213,19 @@ namespace _420_14B_FX_A24_TP2
         /// <param name="e"></param>
         private void btnAjouterCoureur_Click(object sender, RoutedEventArgs e)
         {
-            FormCoureur frmCoureur = new FormCoureur();
-            if (frmCoureur.ShowDialog() == true)
+            try
             {
-                Course.AjouterCoureur(frmCoureur.Coureur);
-                AfficherListeCoureur();
-                MessageBox.Show("Le coureur a bien été ajouté");
+                FormCoureur frmCoureur = new FormCoureur();
+                if (frmCoureur.ShowDialog() == true)
+                {
+                    Course.AjouterCoureur(frmCoureur.Coureur);
+                    AfficherListeCoureur();
+                    MessageBox.Show("Le coureur a bien été ajouté");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -229,6 +236,7 @@ namespace _420_14B_FX_A24_TP2
         /// <param name="e"></param>
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
+            
             if (lstCoureurs.SelectedItem != null)
             {
                 Coureur coureur = lstCoureurs.SelectedItem as Coureur;
@@ -256,16 +264,23 @@ namespace _420_14B_FX_A24_TP2
         /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            if (lstCoureurs.SelectedItem != null)
+            try
             {
-                Coureur coureur = lstCoureurs.SelectedItem as Coureur;
-                FormCoureur frmCoureur = new FormCoureur(EtatFormulaire.Supprimer, coureur);
-                if (frmCoureur.ShowDialog() == true)
+                if (lstCoureurs.SelectedItem != null)
                 {
-                    Course.SupprimerCoureur(frmCoureur.Coureur);
-                    AfficherListeCoureur();
-                    MessageBox.Show("La course a bien été supprimé");
+                    Coureur coureur = lstCoureurs.SelectedItem as Coureur;
+                    FormCoureur frmCoureur = new FormCoureur(EtatFormulaire.Supprimer, coureur);
+                    if (frmCoureur.ShowDialog() == true)
+                    {
+                        Course.SupprimerCoureur(frmCoureur.Coureur);
+                        AfficherListeCoureur();
+                        MessageBox.Show("La course a bien été supprimé");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
