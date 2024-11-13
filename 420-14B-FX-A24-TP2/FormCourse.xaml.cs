@@ -67,6 +67,10 @@ namespace _420_14B_FX_A24_TP2
             btnAjouter.Content = Etat;
             ObtenirDescriptionProvince();
             ObtenirDescriptionTypeCourse();
+
+            if (Etat == EtatFormulaire.Ajouter)
+                tabCoureurs.IsEnabled = false;
+
             if (Course != null)
             {
                 txtNom.Text = Course.Nom;

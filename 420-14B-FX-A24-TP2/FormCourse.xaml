@@ -45,7 +45,7 @@
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Coureurs" Height="20" VerticalAlignment="Top">
+                <TabItem x:Name="tabCoureurs" Header="Coureurs" Height="20" VerticalAlignment="Top">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="10,10,20,0" FontWeight="Bold">DOSSARD</TextBlock>
