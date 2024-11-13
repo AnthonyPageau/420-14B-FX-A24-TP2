@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_420_14B_FX_A24_TP2"
         mc:Ignorable="d"
-        Title="La clinique du coureur" Height="360" Width="820" Loaded="Window_Loaded">
+        Title="La clinique du coureur" Height="380" Width="830" Loaded="Window_Loaded">
     <StackPanel Margin="10">
         <GroupBox Header="Liste des courses">
             <StackPanel Margin="10">
@@ -18,7 +18,7 @@
 
                 </StackPanel>
                 <StackPanel>
-                    <ListBox x:Name="lstCourses"   Width="740" Height="200" VerticalAlignment="top" Margin="0,0,10,0" HorizontalAlignment="Left" FontFamily="Courier New"></ListBox>
+                    <ListBox x:Name="lstCourses"   Width="760" Height="215" VerticalAlignment="top" Margin="0,0,10,0" HorizontalAlignment="Left" FontFamily="Courier New"></ListBox>
                 </StackPanel>
                 
             </StackPanel>

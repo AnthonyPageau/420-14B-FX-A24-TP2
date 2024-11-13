@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_420_14B_FX_A24_TP2"
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="Fiche_du_coureur" Height="375" Width="350" Loaded="Window_Loaded">
+        Title="Fiche_du_coureur" Height="400" Width="350" Loaded="Window_Loaded">
     <StackPanel Margin="20">
         <TextBlock x:Name="tbTitre" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Modification d'un coureur</TextBlock>
         <StackPanel Orientation="Horizontal" >

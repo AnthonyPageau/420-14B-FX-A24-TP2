@@ -221,7 +221,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ce coureur existe déjà");
             }
         }
 
@@ -232,7 +232,6 @@ namespace _420_14B_FX_A24_TP2
         /// <param name="e"></param>
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            
             if (lstCoureurs.SelectedItem != null)
             {
                 Coureur coureur = lstCoureurs.SelectedItem as Coureur;
@@ -251,6 +250,7 @@ namespace _420_14B_FX_A24_TP2
             {
                 MessageBox.Show("Vous devez selectionner un coureur");
             }
+
         }
 
         /// <summary>
@@ -260,23 +260,16 @@ namespace _420_14B_FX_A24_TP2
         /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (lstCoureurs.SelectedItem != null)
             {
-                if (lstCoureurs.SelectedItem != null)
+                Coureur coureur = lstCoureurs.SelectedItem as Coureur;
+                FormCoureur frmCoureur = new FormCoureur(EtatFormulaire.Supprimer, coureur);
+                if (frmCoureur.ShowDialog() == true)
                 {
-                    Coureur coureur = lstCoureurs.SelectedItem as Coureur;
-                    FormCoureur frmCoureur = new FormCoureur(EtatFormulaire.Supprimer, coureur);
-                    if (frmCoureur.ShowDialog() == true)
-                    {
-                        Course.SupprimerCoureur(frmCoureur.Coureur);
-                        AfficherListeCoureur();
-                        MessageBox.Show("La course a bien été supprimé");
-                    }
+                    Course.SupprimerCoureur(frmCoureur.Coureur);
+                    AfficherListeCoureur();
+                    MessageBox.Show("La course a bien été supprimé");
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 

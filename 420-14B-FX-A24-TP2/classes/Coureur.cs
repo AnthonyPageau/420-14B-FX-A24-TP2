@@ -235,7 +235,6 @@ namespace _420_14B_FX_A24_TP2.classes
             Province = province;
             Temps = temps;
             Abandon = abandon;
-
         }
 
         /// <summary>
@@ -247,17 +246,12 @@ namespace _420_14B_FX_A24_TP2.classes
             string dossard = Dossard.ToString().PadRight(10);
             string nomprenom = (Nom + ',' + Prenom).ToUpper().PadRight(25);
             string categorie = Categorie.GetDescription().ToString().PadRight(19);
-            string temps = "";
-            string rang = "";
-            if (Temps != TimeSpan.Zero)
+            string temps = null;
+            string rang = null;            
+            if (!(Abandon || Temps == TimeSpan.Zero))
             {
                 temps = Temps.ToString().PadRight(12);
-                if (Temps != TimeSpan.Zero)
-                {
-                    temps = Temps.ToString().PadRight(12);
-                    rang = (Rang + 1).ToString();
-                }
-                
+                rang = (Rang + 1).ToString();
             }
             return $"{dossard}{nomprenom}{categorie}{temps}{rang}";
         }
@@ -296,7 +290,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (other is null)
                 return false;
 
-            return (coureur.Nom == other.Nom && coureur.Prenom == other.Prenom && coureur.Ville == other.Ville && coureur.Province == other.Province && coureur.Temps == other.Temps && coureur.Abandon == other.Abandon);
+            return (coureur.Nom == other.Nom && coureur.Prenom == other.Prenom && coureur.Ville == other.Ville && coureur.Province == other.Province);
             
         }
 

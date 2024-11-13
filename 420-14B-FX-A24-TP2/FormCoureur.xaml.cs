@@ -86,7 +86,10 @@ namespace _420_14B_FX_A24_TP2
                 cboProvince.Text = Coureur.Province.GetDescription().ToString();
                 cboCategorie.Text = Coureur.Categorie.GetDescription().ToString();
                 tspTemps.Text = Coureur.Temps.ToString();
-                //faire le check box si il a abbandonner
+                if(Coureur.Abandon)
+                {
+                    checkAbandon.IsChecked = true;
+                }
                 if (Etat == EtatFormulaire.Supprimer)
                 {
                     txtNom.IsEnabled = false;
@@ -115,13 +118,10 @@ namespace _420_14B_FX_A24_TP2
                         ushort.Parse(txtDossard.Text),
                         txtNom.Text,
                         txtPrenom.Text,
-                        (Categorie)Enum.Parse(typeof(Categorie),
-                        cboCategorie.Text),
+                        (Categorie)(cboCategorie.SelectedIndex),
                         txtVille.Text,
-                        (Province)Enum.Parse(typeof(Province),
-                        cboProvince.Text),
-                        TimeSpan.Zero,
-                        false
+                        (Province)(cboProvince.SelectedIndex),
+                        TimeSpan.Zero
                         );
 
                         DialogResult = true;
@@ -134,8 +134,8 @@ namespace _420_14B_FX_A24_TP2
                         Coureur.Nom = txtNom.Text;
                         Coureur.Prenom = txtPrenom.Text;
                         Coureur.Ville = txtVille.Text;
-                        Coureur.Province = (Province)Enum.Parse(typeof(Province), cboProvince.Text);
-                        Coureur.Categorie = (Categorie)Enum.Parse(typeof(Categorie), cboCategorie.Text);
+                        Coureur.Province = (Province)(cboProvince.SelectedIndex);
+                        Coureur.Categorie = (Categorie)(cboCategorie.SelectedIndex);
                         Coureur.Temps = TimeSpan.Parse(tspTemps.Text);
                         Coureur.Abandon = checkAbandon.IsChecked.Value;
                         DialogResult = true;
