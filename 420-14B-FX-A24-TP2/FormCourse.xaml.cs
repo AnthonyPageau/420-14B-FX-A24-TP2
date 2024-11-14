@@ -272,7 +272,7 @@ namespace _420_14B_FX_A24_TP2
                 {
                     Course.SupprimerCoureur(frmCoureur.Coureur);
                     AfficherListeCoureur();
-                    MessageBox.Show("La course a bien été supprimé");
+                    MessageBox.Show("Le coureur a bien été supprimé");
                 }
             }
         }
